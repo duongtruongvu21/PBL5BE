@@ -23,7 +23,7 @@ namespace PBL5BE.API.Controllers
             userRegister.Username = userRegister.Username.ToLower();
             if(_context.Users.Any(u => u.Username == userRegister.Username))
             {
-                return BadRequest("Tài khoản đã tồn tại");
+                return BadRequest(false);
             }
 
             using var hmac = new HMACSHA512();
@@ -41,7 +41,7 @@ namespace PBL5BE.API.Controllers
             var _code = "TestCODE31";
             _ = SendMail.SendVerificationMail(userRegister.Email, _code);
 
-            return Ok($"Đăng ký thành công tài khoản {newUser.Username}!!");
+            return Ok(true);
         }
 
         
@@ -53,7 +53,7 @@ namespace PBL5BE.API.Controllers
                 FirstOrDefault(u => u.Username == userLogin.Username);
 
             if(currentUser == null) {
-                return Unauthorized("Tài khoản không tồn tại");
+                return Unauthorized(-1);
             }
 
             using(var hmac = new HMACSHA512(currentUser.PasswordSalt)) {
@@ -62,12 +62,18 @@ namespace PBL5BE.API.Controllers
 
                 for(int i = 0; i < currentUser.PasswordHashed.Length; i++) {
                     if (currentUser.PasswordHashed[i] != passwordBytes[i]) {
-                        return Unauthorized("Không đúng mật khẩu");
+                        return Unauthorized(0);
                     }
                 }
 
-                return Ok($"Xin chào {currentUser.Username} :>");
+                return Ok(1);
             }
+        }
+
+        [HttpGet("getAllUser")]
+        public IActionResult GetAllUser() 
+        {
+            return Ok(_context.Users.ToList());
         }
     }
 }

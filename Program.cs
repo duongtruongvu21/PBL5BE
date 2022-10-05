@@ -4,6 +4,20 @@ using PBL5BE.API.Data;
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "_myCORS",
+                      policy  =>
+                      {
+                          policy.WithOrigins("*")
+                          .AllowAnyMethod().AllowAnyHeader();
+                      });
+});
+
+
+
+
 var connectionString = builder.Configuration.GetConnectionString("Default");
 // Add services to the container.
 
@@ -30,6 +44,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("_myCORS");
 
 app.UseHttpsRedirection();
 
