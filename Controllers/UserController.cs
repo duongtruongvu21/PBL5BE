@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
-using PBL5BE.API.OtherModulesce;
+using PBL5BE.API.OtherModules;
 
 namespace PBL5BE.API.Controllers
 {
@@ -70,10 +70,24 @@ namespace PBL5BE.API.Controllers
             }
         }
 
-        [HttpGet("getAllUser")]
+        [HttpPost("getAllUser")]
         public IActionResult GetAllUser() 
         {
             return Ok(_context.Users.ToList());
+        }
+
+        
+
+        [HttpGet("getAllUser1")]
+        public IActionResult GetAllUser1() 
+        {
+            return Ok(_context.Users.ToList());
+        }
+
+        [HttpGet("get1")]
+        public IActionResult Get1() 
+        {
+            return Ok("oke");
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Mail;
 
-namespace PBL5BE.API.OtherModulesce
+namespace PBL5BE.API.OtherModules
 {
     public class SendMail
     {
