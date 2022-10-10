@@ -8,6 +8,7 @@ using PBL5BE.API.OtherModules;
 
 namespace PBL5BE.API.Controllers
 {
+    [Microsoft.AspNetCore.Cors.EnableCors("_myCORS")]
     public class UserController : BaseController
     {
         private readonly DataContext _context;
@@ -78,6 +79,7 @@ namespace PBL5BE.API.Controllers
 
         
 
+        [Microsoft.AspNetCore.Cors.EnableCors("_myCORS")]
         [HttpGet("getAllUser1")]
         public IActionResult GetAllUser1() 
         {
