@@ -1,95 +1,51 @@
-using System.Security.Cryptography;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
-using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
-using PBL5BE.API.Data.Entities;
-using PBL5BE.API.OtherModules;
+using PBL5BE.API.Services;
+using PBL5BE.API.Services._User;
+using PBL5BE.API.Services._UserInfo;
 
 namespace PBL5BE.API.Controllers
 {
     [Microsoft.AspNetCore.Cors.EnableCors("_myCORS")]
     public class UserController : BaseController
     {
-        private readonly DataContext _context;
+        private readonly IUserService _userService;
+        private readonly IUserInfoService _userInfoService;
 
-        public UserController(DataContext context)
+        public UserController(IUserService userService, IUserInfoService userInfoService)
         {
-            _context = context;
+            _userService = userService;
+            _userInfoService = userInfoService;
         }
         
         [HttpPost("UserRegister")]
-        public IActionResult Register([FromBody] UserRegister userRegister)
+        public IActionResult Register([FromBody] UserLogin userLogin)
         {
-            userRegister.Username = userRegister.Username.ToLower();
-            if(_context.Users.Any(u => u.Username == userRegister.Username))
+            var isSuccess = _userService.CreateUser(userLogin);
+
+            if (isSuccess) 
             {
-                return BadRequest(false);
+                var newUser = _userService.GetUserByEmail(userLogin.Email);
+
+                _userInfoService.CreateUserInfo(newUser);
+
+                var _code = "TestCODE31";
+                _ = SendMail.SendVerificationMail(userLogin.Email, _code);
             }
 
-            using var hmac = new HMACSHA512();
-            var passwordByte = Encoding.UTF8.GetBytes(userRegister.Password);
-            var newUser = new User() {
-                Username = userRegister.Username,
-                Email = userRegister.Email,
-                PasswordSalt = hmac.Key,
-                PasswordHashed = hmac.ComputeHash(passwordByte)
-            };
-
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
-
-            var _code = "TestCODE31";
-            _ = SendMail.SendVerificationMail(userRegister.Email, _code);
-
-            return Ok(true);
+            return Ok(isSuccess);
         }
-
         
         [HttpPost("UserLogin")]
         public IActionResult UserLogin([FromBody] UserLogin userLogin)
         {
-            userLogin.Username = userLogin.Username.ToLower();
-            var currentUser = _context.Users.
-                FirstOrDefault(u => u.Username == userLogin.Username);
-
-            if(currentUser == null) {
-                return Unauthorized(-1);
-            }
-
-            using(var hmac = new HMACSHA512(currentUser.PasswordSalt)) {
-                var passwordBytes = hmac.ComputeHash(
-                    Encoding.UTF8.GetBytes(userLogin.Password));
-
-                for(int i = 0; i < currentUser.PasswordHashed.Length; i++) {
-                    if (currentUser.PasswordHashed[i] != passwordBytes[i]) {
-                        return Unauthorized(0);
-                    }
-                }
-
-                return Ok(1);
-            }
+            return Ok(_userService.LoginUser(userLogin));
         }
 
-        [HttpPost("getAllUser")]
-        public IActionResult GetAllUser() 
+        [HttpGet("GetUsers")]
+        public IActionResult GetUsers() 
         {
-            return Ok(_context.Users.ToList());
-        }
-
-        
-
-        [Microsoft.AspNetCore.Cors.EnableCors("_myCORS")]
-        [HttpGet("getAllUser1")]
-        public IActionResult GetAllUser1() 
-        {
-            return Ok(_context.Users.ToList());
-        }
-
-        [HttpGet("get1")]
-        public IActionResult Get1() 
-        {
-            return Ok("oke");
+            return Ok(_userService.GetUsers());
         }
     }
 }

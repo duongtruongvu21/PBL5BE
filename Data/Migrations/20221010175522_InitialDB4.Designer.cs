@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBL5BE.API.Data;
 
@@ -10,9 +11,10 @@ using PBL5BE.API.Data;
 namespace PBL5BE.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221010175522_InitialDB4")]
+    partial class InitialDB4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +46,6 @@ namespace PBL5BE.API.Data.Migrations
             modelBuilder.Entity("PBL5BE.API.Data.Entities.UserInfo", b =>
                 {
                     b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
@@ -73,7 +74,8 @@ namespace PBL5BE.API.Data.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("PictureURL")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<bool>("Sex")
                         .HasColumnType("tinyint(1)");
@@ -84,6 +86,17 @@ namespace PBL5BE.API.Data.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("UserInfos");
+                });
+
+            modelBuilder.Entity("PBL5BE.API.Data.Entities.UserInfo", b =>
+                {
+                    b.HasOne("PBL5BE.API.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

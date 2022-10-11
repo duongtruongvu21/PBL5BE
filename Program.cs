@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PBL5BE.API.Data;
+using PBL5BE.API.Services._User;
+using PBL5BE.API.Services._UserInfo;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -33,6 +35,9 @@ services.AddDbContext<DataContext>(
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
+
+services.AddScoped<IUserService, UserService>();
+services.AddScoped<IUserInfoService, UserInfoService>();
 
 var app = builder.Build();
 
