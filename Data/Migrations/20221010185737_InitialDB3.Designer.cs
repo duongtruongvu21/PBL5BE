@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBL5BE.API.Data;
 
@@ -10,9 +11,10 @@ using PBL5BE.API.Data;
 namespace PBL5BE.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221010185737_InitialDB3")]
+    partial class InitialDB3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,8 @@ namespace PBL5BE.API.Data.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("PictureURL")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<bool>("Sex")
                         .HasColumnType("tinyint(1)");

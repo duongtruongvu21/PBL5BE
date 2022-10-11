@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PBL5BE.API.Data;
+using PBL5BE.API.Services._User;
+using PBL5BE.API.Services._UserInfo;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -8,7 +10,7 @@ var services = builder.Services;
 var connectionString = builder.Configuration.GetConnectionString("Default");
 // Add services to the container.
     
- builder.WebHost.ConfigureKestrel(options => options.Listen(System.Net.IPAddress.Parse("192.168.1.24"), 7149));
+ builder.WebHost.ConfigureKestrel(options => options.Listen(System.Net.IPAddress.Parse("127.0.0.1"), 7149));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -33,6 +35,9 @@ services.AddDbContext<DataContext>(
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
+
+services.AddScoped<IUserService, UserService>();
+services.AddScoped<IUserInfoService, UserInfoService>();
 
 var app = builder.Build();
 
