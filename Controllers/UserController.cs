@@ -42,8 +42,8 @@ namespace PBL5BE.API.Controllers
             return Ok(_userService.LoginUser(userLogin));
         }
 
-        [HttpGet("getUsers")]
-        public IActionResult GetAllUser() 
+        [HttpGet("GetUsers")]
+        public IActionResult GetUsers() 
         {
             return Ok(_userService.GetUsers());
         }
