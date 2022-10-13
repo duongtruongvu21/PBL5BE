@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
+using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._User;
 using PBL5BE.API.Services._UserInfo;
@@ -39,7 +42,23 @@ namespace PBL5BE.API.Controllers
         [HttpPost("UserLogin")]
         public IActionResult UserLogin([FromBody] UserLogin userLogin)
         {
-            return Ok(_userService.LoginUser(userLogin));
+            var isSuccess = _userService.LoginUser(userLogin);
+            User user = null;
+            UserInfo userinfo = null;
+            if(isSuccess == 1) 
+            {
+                user = _userService.GetUserByEmail(userLogin.Email);
+                userinfo = _userInfoService.GetUserInfoByID(user.ID);
+            }
+
+            var returnData = new ReturnData() {
+                isSuccess = isSuccess,
+                Data = new List<object>() {
+                    userinfo,
+                }
+            };
+
+            return Ok(JsonConvert.SerializeObject(returnData));
         }
 
         [HttpGet("GetUsers")]
