@@ -68,3 +68,4 @@ C:\Users\TruongVu\Desktop\PBL5BE\obj\Debug\net6.0\refint\PBL5BE.API.dll
 C:\Users\TruongVu\Desktop\PBL5BE\obj\Debug\net6.0\PBL5BE.API.pdb
 C:\Users\TruongVu\Desktop\PBL5BE\obj\Debug\net6.0\PBL5BE.API.genruntimeconfig.cache
 C:\Users\TruongVu\Desktop\PBL5BE\obj\Debug\net6.0\ref\PBL5BE.API.dll
+C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\Newtonsoft.Json.dll
