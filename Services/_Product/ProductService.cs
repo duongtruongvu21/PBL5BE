@@ -38,6 +38,7 @@ namespace PBL5BE.API.Services._Category
                     PricePerOne = newProduct.PricePerOne,
                     Status = 1,
                     isReviewed = false,
+                    PictureURL = newProduct.PictureURL,
                     CreateAt = DateTime.Now
                 };
                 _context.Products.Add(newP);
@@ -95,6 +96,7 @@ namespace PBL5BE.API.Services._Category
                 currentProduct.PricePerOne = newProduct.PricePerOne;
                 currentProduct.Status = 1;
                 currentProduct.isReviewed = false;
+                currentProduct.PictureURL = newProduct.PictureURL;
                 _context.SaveChanges();
             } 
             catch(Exception) {

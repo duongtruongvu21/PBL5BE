@@ -17,6 +17,7 @@ namespace PBL5BE.API.Data.Entities
         public float PricePerOne { get; set; }
         public byte Status { get; set; }
         public bool isReviewed { get; set; }
+        public string PictureURL { get; set; }
         public DateTime CreateAt { get; set; }
         [ForeignKey("User")]
         public int CreateBy { get; set; }
