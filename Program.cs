@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using PBL5BE.API.Data;
 using PBL5BE.API.Services._User;
 using PBL5BE.API.Services._UserInfo;
+using PBL5BE.API.Services._Category;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -38,7 +39,8 @@ services.AddDbContext<DataContext>(
 
 services.AddScoped<IUserService, UserService>();
 services.AddScoped<IUserInfoService, UserInfoService>();
-
+services.AddScoped<ICategoryService, CategoryService>();
+services.AddScoped<IProductService, ProductService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
