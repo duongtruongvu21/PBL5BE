@@ -5,7 +5,7 @@ namespace PBL5BE.API.Services._User
 {
     public interface IUserService
     {
-        bool CreateUser(UserLogin userLogin);
+        int CreateUser(UserLogin userLogin);
         List<User> GetUsers();
         int LoginUser(UserLogin userLogin);
         User GetUserByEmail(String email);

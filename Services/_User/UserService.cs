@@ -14,14 +14,14 @@ namespace PBL5BE.API.Services._User
             _context = context;
         }
 
-        public bool CreateUser(UserLogin userLogin)
+        public int CreateUser(UserLogin userLogin)
         {
             try 
             {
                 userLogin.Email = userLogin.Email.ToLower();
                 if(_context.Users.Any(u => u.Email == userLogin.Email))
                 {
-                    return false;
+                    return -1;
                 }
 
                 using var hmac = new HMACSHA512();
@@ -36,10 +36,10 @@ namespace PBL5BE.API.Services._User
                 _context.SaveChanges();
             } catch(Exception) 
             {
-                return false;
+                return 0;
             }
 
-            return true;
+            return 1;
         }
 
         public User GetUserByEmail(string email)

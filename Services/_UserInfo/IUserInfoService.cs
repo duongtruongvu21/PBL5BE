@@ -8,6 +8,6 @@ namespace PBL5BE.API.Services._UserInfo
         void CreateUserInfo(User user);
         bool EditUserInfo(UserInfoDTO userInfoDTO, UserInfo existUserInfo);
         UserInfo GetUserInfoByID(int id);
-        List<UserInfo> GetAllUserInfo();
+        List<UserInfo> GetUserInfos();
     }
 }

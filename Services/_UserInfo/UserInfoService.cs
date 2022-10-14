@@ -55,7 +55,7 @@ namespace PBL5BE.API.Services._UserInfo
             }
         }
 
-        public List<UserInfo> GetAllUserInfo()
+        public List<UserInfo> GetUserInfos()
         {
             return _context.UserInfos.ToList();
         }

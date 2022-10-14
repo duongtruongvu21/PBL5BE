@@ -26,7 +26,7 @@ namespace PBL5BE.API.Controllers
         {
             var isSuccess = _userService.CreateUser(userLogin);
 
-            if (isSuccess) 
+            if (isSuccess == 1) 
             {
                 var newUser = _userService.GetUserByEmail(userLogin.Email);
 
@@ -36,7 +36,11 @@ namespace PBL5BE.API.Controllers
                 _ = SendMail.SendVerificationMail(userLogin.Email, _code);
             }
 
-            return Ok(isSuccess);
+            var returnData = new ReturnData() {
+                isSuccess = isSuccess,
+            };
+
+            return Ok(JsonConvert.SerializeObject(returnData));
         }
         
         [HttpPost("UserLogin")]
@@ -64,7 +68,12 @@ namespace PBL5BE.API.Controllers
         [HttpGet("GetUsers")]
         public IActionResult GetUsers() 
         {
-            return Ok(_userService.GetUsers());
+            var returnData = new ReturnData() {
+                isSuccess = 1,
+                Data = new List<object>(_userService.GetUsers())
+            };
+
+            return Ok(JsonConvert.SerializeObject(returnData));
         }
     }
 }

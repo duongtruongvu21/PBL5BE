@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._User;
@@ -29,7 +31,12 @@ namespace PBL5BE.API.Controllers
         [HttpGet("GetUserInfos")]
         public IActionResult GetUserInfos() 
         {
-            return Ok(_userInfoService.GetAllUserInfo());
+            var returnData = new ReturnData() {
+                isSuccess = 1,
+                Data = new List<object>(_userInfoService.GetUserInfos())
+            };
+
+            return Ok(JsonConvert.SerializeObject(returnData));
         }
     }
 }
