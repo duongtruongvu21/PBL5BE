@@ -20,7 +20,7 @@ namespace PBL5BE.API.Services._Category
             {
                 if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
                 {
-                    return -1;
+                    return ReturnValue.instance.Existed;
                 }
                 var newC = new Category(){
                     CategoryName = newCategory.CategoryName,
@@ -30,39 +30,39 @@ namespace PBL5BE.API.Services._Category
                 _context.SaveChanges();
             } catch(Exception) 
             {
-                return 0;
+                return ReturnValue.instance.ServerCodeException;
             }
-            return 1;
+            return ReturnValue.instance.Success;
         }
         public int UpdateCategory(Category newCategory)
         {
             try {
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newCategory.ID);
-                if(currentCategory == null)  return -2;
+                if(currentCategory == null)  return ReturnValue.instance.IDNotFound;
                 if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
                 {
-                    return -1;
+                    return ReturnValue.instance.Existed;
                 }
                 currentCategory.CategoryName = newCategory.CategoryName;
                 _context.SaveChanges();
             } 
             catch(Exception) {
-                return 0;
+                return ReturnValue.instance.ServerCodeException;
             }
-            return 1;
+            return ReturnValue.instance.Success;
         }
         // cần cải thiện hàm delete, xoá các record phụ thuộc ở các bảng khác
-        public int DeleteCategory(Category dCategory){
+        public int DeleteCategory(int id){
             try{
-                var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == dCategory.ID);
+                var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == id);
                 if (currentCategory != null) _context.Categories.Remove(currentCategory);
-                else return -2;
+                else return ReturnValue.instance.IDNotFound;
                 _context.SaveChanges();
             }
             catch(Exception) {
-                return 0;
+                return ReturnValue.instance.ServerCodeException;
             }
-            return 1;
+            return ReturnValue.instance.Success;
         }
         public List<Category> GetCategories()
         {

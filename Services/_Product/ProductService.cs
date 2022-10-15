@@ -19,15 +19,13 @@ namespace PBL5BE.API.Services._Category
             try {
                 // check có trùng tên hay không
                 if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
-                {
-                    return -1;
-                }
+                    return ReturnValue.instance.Existed;
                 // check category có tồn tại hay không
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
-                if (currentCategory == null)  return -2;
+                if (currentCategory == null)  return ReturnValue.instance.ForeignKeyIDNotFound;
                 // check xem người tạo có tồn tại hay không
                 var currentUser = _context.Users.FirstOrDefault(u => u.ID == newProduct.CreateBy);
-                if (currentUser == null)  return -2;
+                if (currentUser == null)  return ReturnValue.instance.ForeignKeyIDNotFound;
 
                 var newP = new Product(){
                     CategoryID = newProduct.CategoryID,
@@ -45,23 +43,23 @@ namespace PBL5BE.API.Services._Category
                 _context.SaveChanges();
             } 
             catch(Exception) {
-                return 0;
+                return ReturnValue.instance.ServerCodeException;
             }
-            return 1;
+            return ReturnValue.instance.Success;
         }
         // cần cải thiện hàm delete, xoá các record phụ thuộc ở các bảng khác
         public int DeleteProduct(int id)
         {
             try {
                 var product = _context.Products.FirstOrDefault(u => u.ID == id);
-                if (product == null) return -2;
+                if (product == null) return ReturnValue.instance.IDNotFound;
                 _context.Products.Remove(product);
                 _context.SaveChanges();
             }
             catch(Exception) {
-                return 0;
+                return ReturnValue.instance.ServerCodeException;
             }
-            return 1;
+            return ReturnValue.instance.Success;
         }
 
         public Product GetProductByID(int id)
@@ -81,10 +79,13 @@ namespace PBL5BE.API.Services._Category
             try {
                 // check xem product có tồn tại hay không
                 var currentProduct = _context.Products.FirstOrDefault(u => u.ID == newProduct.ID);
-                if (currentProduct == null) return -1;
+                if (currentProduct == null) return ReturnValue.instance.IDNotFound;
                 // check category có tồn tại hay không
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
-                if (currentCategory == null)  return -2;
+                if (currentCategory == null)  return ReturnValue.instance.ForeignKeyIDNotFound;
+                // check có trùng tên hay không
+                if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
+                    return ReturnValue.instance.Existed;
                 // check xem người tạo có tồn tại hay không
                 // var currentUser = _context.Users.FirstOrDefault(u => u.ID == newProduct.CreateBy);
                 // if (currentUser == null)  return -2;
@@ -100,9 +101,9 @@ namespace PBL5BE.API.Services._Category
                 _context.SaveChanges();
             } 
             catch(Exception) {
-                return 0;
+                return ReturnValue.instance.ServerCodeException;
             }
-            return 1;
+            return ReturnValue.instance.Success;
         }
     }
 }
