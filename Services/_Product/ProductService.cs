@@ -84,8 +84,10 @@ namespace PBL5BE.API.Services._Category
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
                 if (currentCategory == null)  return ReturnValue.instance.ForeignKeyIDNotFound;
                 // check có trùng tên hay không
-                if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
-                    return ReturnValue.instance.Existed;
+                if (currentProduct.ProductName.ToLower() != newProduct.ProductName.ToLower()){
+                    if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
+                        return ReturnValue.instance.Existed;
+                }
                 // check xem người tạo có tồn tại hay không
                 // var currentUser = _context.Users.FirstOrDefault(u => u.ID == newProduct.CreateBy);
                 // if (currentUser == null)  return -2;
