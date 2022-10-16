@@ -7,7 +7,7 @@ namespace PBL5BE.API.Services._Category
     {
         int CreateCategory(Category categoryDTO);
         int UpdateCategory(Category categoryDTO);
-        int DeleteCategory(Category categoryDTO);
+        int DeleteCategory(int id);
         List<Category> GetCategories();
     }
 }
