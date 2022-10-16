@@ -27,7 +27,7 @@ namespace PBL5BE.API.Controllers
             };
             return Ok(JsonConvert.SerializeObject(returnData));
         }
-        [HttpPost("UpdateProduct")]
+        [HttpPut("UpdateProduct")]
         public IActionResult UpdateProduct([FromBody] Product newProduct)
         {
             var isSuccess = _productService.UpdateProduct(newProduct);
@@ -38,8 +38,8 @@ namespace PBL5BE.API.Controllers
             };
             return Ok(JsonConvert.SerializeObject(returnData));
         }
-        [HttpPost("DeleteProduct")]
-        public IActionResult DeleteProduct([FromBody] int id)
+        [HttpDelete("DeleteProduct")]
+        public IActionResult DeleteProduct(int id)
         {
             var isSuccess = _productService.DeleteProduct(id);
             var returnData = new ReturnData() {
@@ -59,8 +59,8 @@ namespace PBL5BE.API.Controllers
             };
             return Ok(JsonConvert.SerializeObject(returnData));
         }
-        [HttpPost("GetProductByID")]
-        public IActionResult GetProductByID([FromBody] int id)
+        [HttpGet("GetProductByID")]
+        public IActionResult GetProductByID(int id)
         {
             try{
                 Product p = _productService.GetProductByID(id);
