@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
+using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._User;
 using PBL5BE.API.Services._UserInfo;
@@ -26,7 +27,8 @@ namespace PBL5BE.API.Controllers
         {
             var isSuccess = _userService.CreateUser(userLogin);
 
-            if (isSuccess == 1) 
+            var returnData = new ReturnData();
+            if(isSuccess == STTCode.Success) 
             {
                 var newUser = _userService.GetUserByEmail(userLogin.Email);
 
@@ -34,11 +36,12 @@ namespace PBL5BE.API.Controllers
 
                 var _code = "TestCODE31";
                 _ = SendMail.SendVerificationMail(userLogin.Email, _code);
+                returnData.isSuccess = true;
+            } else 
+            {
+                returnData.isSuccess = false;
+                returnData.errMessage = StatusCodeService.toString(isSuccess);
             }
-
-            var returnData = new ReturnData() {
-                isSuccess = isSuccess,
-            };
 
             return Ok(JsonConvert.SerializeObject(returnData));
         }
@@ -49,18 +52,22 @@ namespace PBL5BE.API.Controllers
             var isSuccess = _userService.LoginUser(userLogin);
             User user = null;
             UserInfo userinfo = null;
-            if(isSuccess == 1) 
+
+            var returnData = new ReturnData();
+            if(isSuccess == STTCode.Success) 
             {
+                returnData.isSuccess = true;
                 user = _userService.GetUserByEmail(userLogin.Email);
                 userinfo = _userInfoService.GetUserInfoByID(user.ID);
-            }
 
-            var returnData = new ReturnData() {
-                isSuccess = isSuccess,
-                Data = new List<object>() {
+                returnData.Data = new List<object>() {
                     userinfo,
-                }
-            };
+                };
+            } else 
+            {
+                returnData.isSuccess = false;
+                returnData.errMessage = StatusCodeService.toString(isSuccess);
+            }
 
             return Ok(JsonConvert.SerializeObject(returnData));
         }
@@ -69,7 +76,7 @@ namespace PBL5BE.API.Controllers
         public IActionResult GetUsers() 
         {
             var returnData = new ReturnData() {
-                isSuccess = 1,
+                isSuccess = true,
                 Data = new List<object>(_userService.GetUsers())
             };
 

@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
+using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._Category;
 
@@ -16,37 +17,51 @@ namespace PBL5BE.API.Controllers
         {
             _productService = productService;
         }
+
         [HttpPost("CreateProduct")]
         public IActionResult CreateProduct([FromBody] Product newProduct)
         {
             var isSuccess = _productService.CreateProduct(newProduct);
-            var returnData = new ReturnData() {
-                isSuccess = isSuccess,
-                Data = new List<object>() {
-                }
-            };
+            var returnData = new ReturnData();
+            if(isSuccess == STTCode.Success) 
+            {
+                returnData.isSuccess = true;
+            } else 
+            {
+                returnData.isSuccess = false;
+                returnData.errMessage = StatusCodeService.toString(isSuccess);
+            }
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateProduct")]
         public IActionResult UpdateProduct([FromBody] Product newProduct)
         {
             var isSuccess = _productService.UpdateProduct(newProduct);
-            var returnData = new ReturnData() {
-                isSuccess = isSuccess,
-                Data = new List<object>() {
-                }
-            };
+            var returnData = new ReturnData();
+            if(isSuccess == STTCode.Success) 
+            {
+                returnData.isSuccess = true;
+            } else 
+            {
+                returnData.isSuccess = false;
+                returnData.errMessage = StatusCodeService.toString(isSuccess);
+            }
+
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpDelete("DeleteProduct")]
         public IActionResult DeleteProduct(int id)
         {
             var isSuccess = _productService.DeleteProduct(id);
-            var returnData = new ReturnData() {
-                isSuccess = isSuccess,
-                Data = new List<object>() {
-                }
-            };
+            var returnData = new ReturnData();
+            if(isSuccess == STTCode.Success) 
+            {
+                returnData.isSuccess = true;
+            } else 
+            {
+                returnData.isSuccess = false;
+                returnData.errMessage = StatusCodeService.toString(isSuccess);
+            }
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         
@@ -54,7 +69,7 @@ namespace PBL5BE.API.Controllers
         public IActionResult GetProducts() 
         {
             var returnData = new ReturnData() {
-                isSuccess = 1,
+                isSuccess = true,
                 Data = new List<object>(_productService.GetProducts())
             };
             return Ok(JsonConvert.SerializeObject(returnData));
@@ -62,10 +77,10 @@ namespace PBL5BE.API.Controllers
         [HttpGet("GetProductByID")]
         public IActionResult GetProductByID(int id)
         {
-            try{
+            try {
                 Product p = _productService.GetProductByID(id);
                 var returnData = new ReturnData() {
-                    isSuccess = 1,
+                    isSuccess = true,
                     Data = new List<object>() {
                         p,
                     }
@@ -74,9 +89,8 @@ namespace PBL5BE.API.Controllers
             }
             catch(Exception){
                 var returnData = new ReturnData() {
-                    isSuccess = -1,
-                    Data = new List<object>() {
-                    }
+                    isSuccess = false,
+                    errMessage = StatusCodeService.toString(STTCode.IDNotFound)
                 };
                 return Ok(JsonConvert.SerializeObject(returnData));
             }
