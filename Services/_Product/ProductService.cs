@@ -1,8 +1,6 @@
-using System.Security.Cryptography;
-using System.Text;
 using PBL5BE.API.Data;
-using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
+using PBL5BE.API.Data.Enums;
 
 namespace PBL5BE.API.Services._Category
 {
@@ -14,18 +12,18 @@ namespace PBL5BE.API.Services._Category
             _context = context;
         }
 
-        public int CreateProduct(Product newProduct)
+        public STTCode CreateProduct(Product newProduct)
         {
             try {
                 // check có trùng tên hay không
                 if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
-                    return ReturnValue.instance.Existed;
+                    return STTCode.Existed;
                 // check category có tồn tại hay không
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
-                if (currentCategory == null)  return ReturnValue.instance.ForeignKeyIDNotFound;
+                if (currentCategory == null)  return STTCode.ForeignKeyIDNotFound;
                 // check xem người tạo có tồn tại hay không
                 var currentUser = _context.Users.FirstOrDefault(u => u.ID == newProduct.CreateBy);
-                if (currentUser == null)  return ReturnValue.instance.ForeignKeyIDNotFound;
+                if (currentUser == null)  return STTCode.ForeignKeyIDNotFound;
 
                 var newP = new Product(){
                     CategoryID = newProduct.CategoryID,
@@ -43,23 +41,23 @@ namespace PBL5BE.API.Services._Category
                 _context.SaveChanges();
             } 
             catch(Exception) {
-                return ReturnValue.instance.ServerCodeException;
+                return STTCode.ServerCodeException;
             }
-            return ReturnValue.instance.Success;
+            return STTCode.Success;
         }
         // cần cải thiện hàm delete, xoá các record phụ thuộc ở các bảng khác
-        public int DeleteProduct(int id)
+        public STTCode DeleteProduct(int id)
         {
             try {
                 var product = _context.Products.FirstOrDefault(u => u.ID == id);
-                if (product == null) return ReturnValue.instance.IDNotFound;
+                if (product == null) return STTCode.IDNotFound;
                 _context.Products.Remove(product);
                 _context.SaveChanges();
             }
             catch(Exception) {
-                return ReturnValue.instance.ServerCodeException;
+                return STTCode.ServerCodeException;
             }
-            return ReturnValue.instance.Success;
+            return STTCode.Success;
         }
 
         public Product GetProductByID(int id)
@@ -74,19 +72,19 @@ namespace PBL5BE.API.Services._Category
             return _context.Products.ToList();
         }
 
-        public int UpdateProduct(Product newProduct)
+        public STTCode UpdateProduct(Product newProduct)
         {
             try {
                 // check xem product có tồn tại hay không
                 var currentProduct = _context.Products.FirstOrDefault(u => u.ID == newProduct.ID);
-                if (currentProduct == null) return ReturnValue.instance.IDNotFound;
+                if (currentProduct == null) return STTCode.IDNotFound;
                 // check category có tồn tại hay không
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
-                if (currentCategory == null)  return ReturnValue.instance.ForeignKeyIDNotFound;
+                if (currentCategory == null)  return STTCode.ForeignKeyIDNotFound;
                 // check có trùng tên hay không
                 if (currentProduct.ProductName.ToLower() != newProduct.ProductName.ToLower()){
                     if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
-                        return ReturnValue.instance.Existed;
+                        return STTCode.Existed;
                 }
                 // check xem người tạo có tồn tại hay không
                 // var currentUser = _context.Users.FirstOrDefault(u => u.ID == newProduct.CreateBy);
@@ -103,9 +101,9 @@ namespace PBL5BE.API.Services._Category
                 _context.SaveChanges();
             } 
             catch(Exception) {
-                return ReturnValue.instance.ServerCodeException;
+                return STTCode.ServerCodeException;
             }
-            return ReturnValue.instance.Success;
+            return STTCode.Success;
         }
     }
 }

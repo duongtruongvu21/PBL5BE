@@ -20,4 +20,21 @@ namespace PBL5BE.API.Data.DTO
         [MaxLength(32)]
         public string CitizenID { get; set; }
     }
+
+    public class UserInfoEditDTO
+    {
+        public int UserID { get; set; }
+        [Required]
+        [MaxLength(32)]
+        public string FirstName { get; set; }
+        [MaxLength(32)]
+        public string LastName { get; set; }
+        [MaxLength(32)]
+        public string PhoneNumber { get; set; }
+        [MaxLength(32)]
+        public string Address { get; set; }
+        public bool Sex { get; set; }
+        [MaxLength(32)]
+        public string CitizenID { get; set; }
+    }
 }

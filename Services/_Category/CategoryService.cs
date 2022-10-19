@@ -1,8 +1,6 @@
-using System.Security.Cryptography;
-using System.Text;
 using PBL5BE.API.Data;
-using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
+using PBL5BE.API.Data.Enums;
 
 namespace PBL5BE.API.Services._Category
 {
@@ -14,13 +12,13 @@ namespace PBL5BE.API.Services._Category
             _context = context;
         }
 
-        public int CreateCategory(Category newCategory)
+        public STTCode CreateCategory(Category newCategory)
         {
             try 
             {
                 if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
                 {
-                    return ReturnValue.instance.Existed;
+                    return STTCode.Existed;
                 }
                 var newC = new Category(){
                     CategoryName = newCategory.CategoryName,
@@ -30,39 +28,39 @@ namespace PBL5BE.API.Services._Category
                 _context.SaveChanges();
             } catch(Exception) 
             {
-                return ReturnValue.instance.ServerCodeException;
+                return STTCode.ServerCodeException;
             }
-            return ReturnValue.instance.Success;
+            return STTCode.Success;
         }
-        public int UpdateCategory(Category newCategory)
+        public STTCode UpdateCategory(Category newCategory)
         {
             try {
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newCategory.ID);
-                if(currentCategory == null)  return ReturnValue.instance.IDNotFound;
+                if(currentCategory == null)  return STTCode.IDNotFound;
                 if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
                 {
-                    return ReturnValue.instance.Existed;
+                    return STTCode.Existed;
                 }
                 currentCategory.CategoryName = newCategory.CategoryName;
                 _context.SaveChanges();
             } 
             catch(Exception) {
-                return ReturnValue.instance.ServerCodeException;
+                return STTCode.ServerCodeException;
             }
-            return ReturnValue.instance.Success;
+            return STTCode.Success;
         }
         // cần cải thiện hàm delete, xoá các record phụ thuộc ở các bảng khác
-        public int DeleteCategory(int id){
+        public STTCode DeleteCategory(int id){
             try{
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == id);
                 if (currentCategory != null) _context.Categories.Remove(currentCategory);
-                else return ReturnValue.instance.IDNotFound;
+                else return STTCode.IDNotFound;
                 _context.SaveChanges();
             }
             catch(Exception) {
-                return ReturnValue.instance.ServerCodeException;
+                return STTCode.ServerCodeException;
             }
-            return ReturnValue.instance.Success;
+            return STTCode.Success;
         }
         public List<Category> GetCategories()
         {

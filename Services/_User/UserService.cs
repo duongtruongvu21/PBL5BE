@@ -3,6 +3,7 @@ using System.Text;
 using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
+using PBL5BE.API.Data.Enums;
 
 namespace PBL5BE.API.Services._User
 {
@@ -14,14 +15,14 @@ namespace PBL5BE.API.Services._User
             _context = context;
         }
 
-        public int CreateUser(UserLogin userLogin)
+        public STTCode CreateUser(UserLogin userLogin)
         {
             try 
             {
                 userLogin.Email = userLogin.Email.ToLower();
                 if(_context.Users.Any(u => u.Email == userLogin.Email))
                 {
-                    return -1;
+                    return STTCode.UserExisted;
                 }
 
                 using var hmac = new HMACSHA512();
@@ -36,10 +37,10 @@ namespace PBL5BE.API.Services._User
                 _context.SaveChanges();
             } catch(Exception) 
             {
-                return 0;
+                return STTCode.ServerCodeException;
             }
 
-            return 1;
+            return STTCode.Success;
         }
 
         public User GetUserByEmail(string email)
@@ -52,14 +53,14 @@ namespace PBL5BE.API.Services._User
             return _context.Users.ToList();
         }
 
-        public int LoginUser(UserLogin userLogin)
+        public STTCode LoginUser(UserLogin userLogin)
         {
             userLogin.Email = userLogin.Email.ToLower();
             var currentUser = _context.Users.
                 FirstOrDefault(u => u.Email == userLogin.Email);
 
             if(currentUser == null) {
-                return -1;
+                return STTCode.UserNotExist;
             }
 
             using(var hmac = new HMACSHA512(currentUser.PasswordSalt)) {
@@ -68,11 +69,11 @@ namespace PBL5BE.API.Services._User
 
                 for(int i = 0; i < currentUser.PasswordHashed.Length; i++) {
                     if (currentUser.PasswordHashed[i] != passwordBytes[i]) {
-                        return 0;
+                        return STTCode.IncorrectPassword;
                     }
                 }
 
-                return 1;
+                return STTCode.Success;
             }
         }
     }
