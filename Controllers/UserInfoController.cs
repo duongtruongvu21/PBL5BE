@@ -4,7 +4,6 @@ using PBL5BE.API.Data;
 using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
-using PBL5BE.API.Services._User;
 using PBL5BE.API.Services._UserInfo;
 
 namespace PBL5BE.API.Controllers
@@ -20,11 +19,11 @@ namespace PBL5BE.API.Controllers
 
         
         [HttpPut("EditUserInfo")]
-        public IActionResult EditUserInfo([FromBody] UserInfoEditDTO userInfoDTO)
+        public async Task<IActionResult> EditUserInfo([FromForm] UserInfoEditDTO userInfoDTO)
         {
             var existUI = _userInfoService.GetUserInfoByID(userInfoDTO.UserID);
                 
-            var isSuccess = _userInfoService.EditUserInfo(userInfoDTO, existUI);
+            var isSuccess = await _userInfoService.EditUserInfo(userInfoDTO, existUI);
 
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 

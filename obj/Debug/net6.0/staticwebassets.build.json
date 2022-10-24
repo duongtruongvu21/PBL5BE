@@ -1,11 +1,88 @@
 {
   "Version": 1,
-  "Hash": "bESnIdCqCaDhiHooABYJmTk1AtpmV1ViSqFEQjy8qLE=",
+  "Hash": "za2IaVW3KJzuTRWLmrtJDp9BXL9uPUQpGfXqUDrdlNg=",
   "Source": "PBL5BE.API",
   "BasePath": "_content/PBL5BE.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "PBL5BE.API\\wwwroot",
+      "Source": "PBL5BE.API",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
+      "BasePath": "_content/PBL5BE.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\avatars\\user1.png",
+      "SourceId": "PBL5BE.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
+      "BasePath": "_content/PBL5BE.API",
+      "RelativePath": "uploads/avatars/user1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\avatars\\user1.png"
+    },
+    {
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\error.png",
+      "SourceId": "PBL5BE.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
+      "BasePath": "_content/PBL5BE.API",
+      "RelativePath": "uploads/others/error.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\others\\error.png"
+    },
+    {
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\noAvatar.png",
+      "SourceId": "PBL5BE.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
+      "BasePath": "_content/PBL5BE.API",
+      "RelativePath": "uploads/others/noAvatar.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\others\\noAvatar.png"
+    },
+    {
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\tokenError.png",
+      "SourceId": "PBL5BE.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
+      "BasePath": "_content/PBL5BE.API",
+      "RelativePath": "uploads/others/tokenError.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\others\\tokenError.png"
+    }
+  ]
 }

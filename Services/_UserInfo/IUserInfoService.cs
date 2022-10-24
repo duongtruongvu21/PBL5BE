@@ -7,7 +7,7 @@ namespace PBL5BE.API.Services._UserInfo
     public interface IUserInfoService
     {
         void CreateUserInfo(User user);
-        STTCode EditUserInfo(UserInfoEditDTO uiEdit, UserInfo existUserInfo);
+        Task<STTCode> EditUserInfo(UserInfoEditDTO uiEdit, UserInfo existUserInfo);
         UserInfo GetUserInfoByID(int id);
         List<UserInfo> GetUserInfos();
     }
