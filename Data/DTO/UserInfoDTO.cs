@@ -23,12 +23,13 @@ namespace PBL5BE.API.Data.DTO
 
     public class UserInfoEditDTO
     {
-        public int UserID { get; set; }
         [Required]
+        public int UserID { get; set; }
         [MaxLength(32)]
         public string FirstName { get; set; }
         [MaxLength(32)]
         public string LastName { get; set; }
+        public IFormFile Avatar { get; set; }
         [MaxLength(32)]
         public string PhoneNumber { get; set; }
         [MaxLength(32)]

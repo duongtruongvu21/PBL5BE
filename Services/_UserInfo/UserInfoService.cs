@@ -8,19 +8,27 @@ namespace PBL5BE.API.Services._UserInfo
 {
     public class UserInfoService : IUserInfoService
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly DataContext _context;
-        public UserInfoService(DataContext context)
+        public UserInfoService(DataContext context, IWebHostEnvironment webHost)
         {
             _context = context;
+            _webHostEnvironment = webHost;
         }
         
+        string GetAvatarPath()
+        {
+            return _webHostEnvironment.WebRootPath + "\\uploads\\avatars";
+        }
+
         public void CreateUserInfo(User user)
         {
             var newUserInfo = new UserInfo() {
                 UserID = user.ID,
                 FirstName = "Unknow",
                 LastName = "Unknow",
-                PictureURL = "https://www.seekpng.com/png/detail/413-4139803_unknown-profile-profile-picture-unknown.png",
+                // %5C == \
+                PictureURL = "%5Cuploads%5Cothers%5CnoAvatar.png",
                 PhoneNumber = "Unknow",
                 Sex = false,
                 Status = 0,
@@ -33,14 +41,15 @@ namespace PBL5BE.API.Services._UserInfo
             _context.SaveChanges();
         }
 
-        public STTCode EditUserInfo(UserInfoEditDTO uiEdit, UserInfo existUserInfo)
+        public Task<STTCode> EditUserInfo(UserInfoEditDTO uiEdit, UserInfo existUserInfo)
         {
             try 
             {
                 existUserInfo.UserID = uiEdit.UserID;
                 existUserInfo.FirstName = uiEdit.FirstName;
                 existUserInfo.LastName = uiEdit.LastName;
-                existUserInfo.PictureURL = "https://www.seekpng.com/png/detail/413-4139803_unknown-profile-profile-picture-unknown.png";
+                existUserInfo.PictureURL = 
+                    Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
                 existUserInfo.PhoneNumber = uiEdit.PhoneNumber;
                 existUserInfo.Sex = uiEdit.Sex;
                 existUserInfo.Status = 1;
@@ -49,10 +58,10 @@ namespace PBL5BE.API.Services._UserInfo
                 _context.Update(existUserInfo);
                 _context.SaveChanges();
 
-                return STTCode.Success;
+                return Task.FromResult(STTCode.Success);
             } catch (Exception) 
             {
-                return STTCode.ServerCodeException;
+                return Task.FromResult(STTCode.ServerCodeException);
             }
         }
 
