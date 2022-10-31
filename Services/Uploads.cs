@@ -26,5 +26,27 @@ namespace PBL5BE.API.Services
                 return "%5Cuploads%5Cavatars%5Cerror.png";
             }
         }
+
+        public static string TestUpImg(IFormFile img, string path) 
+        {
+            try
+            {
+                var filePath = $"{path}\\test.png";
+                if(System.IO.Directory.Exists(filePath))
+                {
+                    System.IO.Directory.Delete(filePath);
+                }
+
+                using(FileStream stream = System.IO.File.Create(filePath))
+                {
+                    img.CopyTo(stream);
+                }
+                return $"test.png";
+            }
+            catch (Exception)
+            {
+                return "failed";
+            }
+        }
     }
 }

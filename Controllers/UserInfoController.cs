@@ -25,7 +25,13 @@ namespace PBL5BE.API.Controllers
                 
             var isSuccess = await _userInfoService.EditUserInfo(userInfoDTO, existUI);
 
+
             var returnData = new ReturnData();
+            returnData.Data = new List<object>() {
+                    userInfoDTO.UserID,
+                    userInfoDTO.CitizenID,
+                };
+
             if(isSuccess == STTCode.Success) 
             {
                 returnData.isSuccess = true;

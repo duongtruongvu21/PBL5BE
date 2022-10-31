@@ -1,6 +1,9 @@
+using System.IO;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc;
 using PBL5BE.API.Data.DTO;
+using PBL5BE.API.Services;
 
 namespace PBL5BE.API.Controllers
 {
@@ -13,9 +16,9 @@ namespace PBL5BE.API.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        string GetFilePath(string nameFile)
+        string GetOthersPath()
         {
-            return _webHostEnvironment.WebRootPath + "\\uploads\\others\\" + nameFile;
+            return _webHostEnvironment.WebRootPath + "\\uploads\\others\\";
         }
 
         // [HttpPost("UploadImage")]
@@ -71,6 +74,11 @@ namespace PBL5BE.API.Controllers
         {
             string Path = _webHostEnvironment.WebRootPath + path;
 
+            if(!System.IO.File.Exists(Path)) 
+            {
+                Path = _webHostEnvironment.WebRootPath + "\\uploads\\others\\noAvatar.png";
+            }
+
             if(System.IO.File.Exists(Path)) 
             {
                 byte[] b = System.IO.File.ReadAllBytes(Path);
@@ -78,5 +86,25 @@ namespace PBL5BE.API.Controllers
             }
             return Ok("ERROR");
         }
+
+        
+        // [HttpPut("TestUpImage")]
+        // public async Task<IActionResult> TestUpImage([FromForm] ImageDTO img)
+        // {
+        //     var a = Uploads.TestUpImg(img.Avatar, GetOthersPath());
+
+        //     return Ok(a);
+        // }
+
+        // [HttpPut("TestUpImageBlob")]
+        // public IActionResult TestUpImageBlob([FromBody] string img)
+        // {
+        //     Regex regex = new Regex(@"^[\w/:.-]+;base64,");
+        //     var base64File = regex.Replace(img, string.Empty);
+        //     byte[] imageByte = Convert.FromBase64String(img);
+
+        //     System.IO.File.WriteAllBytes(GetOthersPath() + "testtt.png", imageByte);
+        //     return Ok("aa");
+        // }
     }
 }

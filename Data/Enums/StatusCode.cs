@@ -10,5 +10,14 @@ namespace PBL5BE.API.Data.Enums
             IDNotFound = -1,
             ServerCodeException = 0,
             Success = 1,
+            
+            E1 = 5,
+            E2 = 6,
+            E3 = 7,
+            E4 = 8,
+            E5 = 9,
+            E6 = 10,
+            E7 = 11,
+            E8 = 12,
     }
 }

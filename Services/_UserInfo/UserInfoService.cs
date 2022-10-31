@@ -43,15 +43,17 @@ namespace PBL5BE.API.Services._UserInfo
 
         public Task<STTCode> EditUserInfo(UserInfoEditDTO uiEdit, UserInfo existUserInfo)
         {
+            STTCode e = STTCode.Existed;
             try 
             {
-                existUserInfo.UserID = uiEdit.UserID;
-                existUserInfo.FirstName = uiEdit.FirstName;
-                existUserInfo.LastName = uiEdit.LastName;
+                e = STTCode.E5;
+                existUserInfo.UserID = uiEdit.UserID; e = STTCode.E1;
+                existUserInfo.FirstName = uiEdit.FirstName;  e = STTCode.E6;
+                existUserInfo.LastName = uiEdit.LastName; e = STTCode.E2;
                 existUserInfo.PictureURL = 
                     Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
-                existUserInfo.PhoneNumber = uiEdit.PhoneNumber;
-                existUserInfo.Sex = uiEdit.Sex;
+                existUserInfo.PhoneNumber = uiEdit.PhoneNumber; e = STTCode.E3;
+                existUserInfo.Sex = uiEdit.Sex; e = STTCode.E4;
                 existUserInfo.Status = 1;
                 existUserInfo.Address = uiEdit.Address;
                 existUserInfo.CitizenID = uiEdit.CitizenID;
@@ -61,7 +63,7 @@ namespace PBL5BE.API.Services._UserInfo
                 return Task.FromResult(STTCode.Success);
             } catch (Exception) 
             {
-                return Task.FromResult(STTCode.ServerCodeException);
+                return Task.FromResult(e);
             }
         }
 

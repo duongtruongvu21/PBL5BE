@@ -24,6 +24,19 @@ namespace PBL5BE.API.Services
                     return "Đã tồn tại tài khoản này";
                 case STTCode.UserNotExist:
                     return "Không tồn tại tài khoản này";
+                case STTCode.E1:
+                    return "E1";
+
+                case STTCode.E2:
+                    return "E2";
+                case STTCode.E3:
+                    return "E3";
+                case STTCode.E4:
+                    return "E4";
+                case STTCode.E5:
+                    return "E5";
+                case STTCode.E6:
+                    return "E6";
                 default:
                     return "Lỗi, báo cho BackEnd";
             }
