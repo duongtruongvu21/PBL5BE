@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PBL5BE.API.Data;
@@ -17,10 +19,24 @@ namespace PBL5BE.API.Controllers
             _categoryService = categoryService;
         }
         [HttpPost("CreateCategory")]
-        public IActionResult CreateCategory([FromBody] Category newCategory)
+        [Authorize]
+        public IActionResult CreateCategory([FromBody] string categoryName)
         {
-            var isSuccess = _categoryService.CreateCategory(newCategory);
-
+            // var isSuccess = STTCode.ServerCodeException;
+            // try{
+            //     string token = Request.Headers["Authorization"];
+            //     token = token.Substring(7);
+            //     var tokenHandler = new JwtSecurityTokenHandler();
+            //     var jsonToken = tokenHandler.ReadToken(token);
+            //     var tokenS = jsonToken as JwtSecurityToken;
+            //     var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
+            //     if (userId != null)
+            //         isSuccess = _categoryService.CreateCategory(categoryName);
+            //     else
+            //         isSuccess = STTCode.InvalidToken;
+            // }
+            // catch(Exception){}
+            var isSuccess = _categoryService.CreateCategory(categoryName);
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
@@ -30,14 +46,13 @@ namespace PBL5BE.API.Controllers
                 returnData.isSuccess = false;
                 returnData.errMessage = StatusCodeService.toString(isSuccess);
             }
-
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateCategory")]
+        [Authorize]
         public IActionResult UpdateCategory([FromBody] Category newCategory)
         {
             var isSuccess = _categoryService.UpdateCategory(newCategory);
-
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
@@ -47,10 +62,10 @@ namespace PBL5BE.API.Controllers
                 returnData.isSuccess = false;
                 returnData.errMessage = StatusCodeService.toString(isSuccess);
             }
-
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpDelete("DeleteCategory")]
+        [Authorize]
         public IActionResult DeleteCategory(int id)
         {
             var isSuccess = _categoryService.DeleteCategory(id);

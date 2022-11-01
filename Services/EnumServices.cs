@@ -26,7 +26,6 @@ namespace PBL5BE.API.Services
                     return "Không tồn tại tài khoản này";
                 case STTCode.E1:
                     return "E1";
-
                 case STTCode.E2:
                     return "E2";
                 case STTCode.E3:
