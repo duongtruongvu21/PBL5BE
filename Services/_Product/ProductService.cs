@@ -1,4 +1,5 @@
 using PBL5BE.API.Data;
+using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 
@@ -12,22 +13,22 @@ namespace PBL5BE.API.Services._Category
             _context = context;
         }
 
-        public STTCode CreateProduct(Product newProduct)
+        public STTCode CreateProduct(ProductDTO newProduct, int userId)
         {
             try {
                 // check có trùng tên hay không
-                if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
+                if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower() && u.Status != 0))
                     return STTCode.Existed;
                 // check category có tồn tại hay không
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
                 if (currentCategory == null)  return STTCode.ForeignKeyIDNotFound;
                 // check xem người tạo có tồn tại hay không
-                var currentUser = _context.Users.FirstOrDefault(u => u.ID == newProduct.CreateBy);
+                var currentUser = _context.Users.FirstOrDefault(u => u.ID == userId);
                 if (currentUser == null)  return STTCode.ForeignKeyIDNotFound;
 
                 var newP = new Product(){
                     CategoryID = newProduct.CategoryID,
-                    CreateBy = newProduct.CreateBy,
+                    CreateBy = userId,
                     ProductName = newProduct.ProductName,
                     Description = newProduct.Description,
                     Count = newProduct.Count,
@@ -51,7 +52,7 @@ namespace PBL5BE.API.Services._Category
             try {
                 var product = _context.Products.FirstOrDefault(u => u.ID == id);
                 if (product == null) return STTCode.IDNotFound;
-                _context.Products.Remove(product);
+                product.Status = 0;
                 _context.SaveChanges();
             }
             catch(Exception) {
@@ -67,12 +68,18 @@ namespace PBL5BE.API.Services._Category
             else return product;
         }
 
-        public List<Product> GetProducts()
+        public List<Product> GetProducts(int categoryId, string productName, byte status, int recordQuantity)
         {
-            return _context.Products.ToList();
+            if (categoryId < 1)
+                return _context.Products.Where(p => p.ProductName.ToLower().Contains(productName.ToLower())
+                && p.Status == status).OrderByDescending(p => p.ID).Take(recordQuantity).ToList();
+            else
+                return _context.Products.Where(p => p.ProductName.ToLower().Contains(productName.ToLower())
+                && p.Status == status 
+                && p.CategoryID == categoryId).OrderByDescending(p => p.ID).Take(recordQuantity).ToList();
         }
 
-        public STTCode UpdateProduct(Product newProduct)
+        public STTCode UpdateProduct(ProductDTO newProduct)
         {
             try {
                 // check xem product có tồn tại hay không
@@ -83,19 +90,15 @@ namespace PBL5BE.API.Services._Category
                 if (currentCategory == null)  return STTCode.ForeignKeyIDNotFound;
                 // check có trùng tên hay không
                 if (currentProduct.ProductName.ToLower() != newProduct.ProductName.ToLower()){
-                    if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower()))
+                    if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower() && u.Status != 0))
                         return STTCode.Existed;
                 }
-                // check xem người tạo có tồn tại hay không
-                // var currentUser = _context.Users.FirstOrDefault(u => u.ID == newProduct.CreateBy);
-                // if (currentUser == null)  return -2;
-                // không sửa CreateBy, CreateAt và ID
                 currentProduct.CategoryID = newProduct.CategoryID;
                 currentProduct.ProductName = newProduct.ProductName;
                 currentProduct.Description = newProduct.Description;
                 currentProduct.Count = newProduct.Count;
                 currentProduct.PricePerOne = newProduct.PricePerOne;
-                currentProduct.Status = 1;
+                currentProduct.Status = newProduct.Status;
                 currentProduct.isReviewed = false;
                 currentProduct.PictureURL = newProduct.PictureURL;
                 _context.SaveChanges();

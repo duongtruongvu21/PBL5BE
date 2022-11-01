@@ -12,16 +12,16 @@ namespace PBL5BE.API.Services._Category
             _context = context;
         }
 
-        public STTCode CreateCategory(Category newCategory)
+        public STTCode CreateCategory(string categoryName)
         {
             try 
             {
-                if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
+                if(_context.Categories.Any(u => u.CategoryName.ToLower() == categoryName.ToLower()))
                 {
                     return STTCode.Existed;
                 }
                 var newC = new Category(){
-                    CategoryName = newCategory.CategoryName,
+                    CategoryName = categoryName,
                     Status = 1
                 };
                 _context.Categories.Add(newC);

@@ -1,6 +1,9 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PBL5BE.API.Data;
+using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
@@ -18,9 +21,20 @@ namespace PBL5BE.API.Controllers
         }
 
         [HttpPost("CreateProduct")]
-        public IActionResult CreateProduct([FromBody] Product newProduct)
+        [Authorize]
+        public IActionResult CreateProduct([FromBody] ProductDTO newProduct)
         {
-            var isSuccess = _productService.CreateProduct(newProduct);
+            var isSuccess = STTCode.ServerCodeException;
+            try{
+                string token = Request.Headers["Authorization"];
+                token = token.Substring(7);
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jsonToken = tokenHandler.ReadToken(token);
+                var tokenS = jsonToken as JwtSecurityToken;
+                var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
+                isSuccess = _productService.CreateProduct(newProduct, int.Parse(userId));
+            }
+            catch(Exception){}
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
@@ -33,7 +47,8 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateProduct")]
-        public IActionResult UpdateProduct([FromBody] Product newProduct)
+        [Authorize]
+        public IActionResult UpdateProduct([FromBody] ProductDTO newProduct)
         {
             var isSuccess = _productService.UpdateProduct(newProduct);
             var returnData = new ReturnData();
@@ -49,6 +64,7 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpDelete("DeleteProduct")]
+        [Authorize]
         public IActionResult DeleteProduct(int id)
         {
             var isSuccess = _productService.DeleteProduct(id);
@@ -65,11 +81,11 @@ namespace PBL5BE.API.Controllers
         }
         
         [HttpGet("GetProducts")]
-        public IActionResult GetProducts() 
+        public IActionResult GetProducts(int categoryId = 0, string productName = "", byte status = 1, int recordQuantity = 999) 
         {
             var returnData = new ReturnData() {
                 isSuccess = true,
-                Data = new List<object>(_productService.GetProducts())
+                Data = new List<object>(_productService.GetProducts(categoryId, productName, status, recordQuantity))
             };
             return Ok(JsonConvert.SerializeObject(returnData));
         }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "V20b+UQYBMGFC1Z3vWiypNx3JI4Oee3uPefslJtuwcc=",
+  "Hash": "otDDFPPayVgrLCk1EMxTwoK5+Yh3CbEBIFpUiIZ5VRo=",
   "Source": "PBL5BE.API",
   "BasePath": "_content/PBL5BE.API",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "PBL5BE.API\\wwwroot",
       "Source": "PBL5BE.API",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\uploads\\avatars\\user1.png",
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\avatars\\user1.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/avatars/user1.png",
       "AssetKind": "All",
@@ -34,10 +34,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\avatars\\user1.png"
     },
     {
-      "Identity": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\uploads\\avatars\\user2.png",
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\avatars\\user2.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/avatars/user2.png",
       "AssetKind": "All",
@@ -51,10 +51,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\avatars\\user2.png"
     },
     {
-      "Identity": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\uploads\\others\\error.png",
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\error.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/error.png",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\error.png"
     },
     {
-      "Identity": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\uploads\\others\\noAvatar.png",
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\noAvatar.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/noAvatar.png",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\noAvatar.png"
     },
     {
-      "Identity": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\uploads\\others\\test.png",
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\test.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/test.png",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\test.png"
     },
     {
-      "Identity": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\uploads\\others\\testtt.png",
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\testtt.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/testtt.png",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\testtt.png"
     },
     {
-      "Identity": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\uploads\\others\\tokenError.png",
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\tokenError.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\TruongVu\\Desktop\\PBL5BE\\wwwroot\\",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/tokenError.png",
       "AssetKind": "All",

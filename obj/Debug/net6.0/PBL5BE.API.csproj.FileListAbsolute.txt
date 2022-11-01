@@ -123,3 +123,12 @@ C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\Microsoft.IdentityModel.Protoc
 C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\PBL5BE.API.staticwebassets.runtime.json
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
