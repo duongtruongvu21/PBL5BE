@@ -8,24 +8,33 @@ namespace PBL5BE.API.Services._Category
     public class ProductService : IProductService
     {
         private readonly DataContext _context;
-        public ProductService(DataContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductService(DataContext context, IWebHostEnvironment webHost)
         {
             _context = context;
+            _webHostEnvironment = webHost;
+        }
+        string GetProductsPath()
+        {
+            return _webHostEnvironment.WebRootPath + "\\uploads\\products";
         }
 
-        public STTCode CreateProduct(ProductDTO newProduct, int userId)
+        public Task<STTCode> CreateProduct(ProductCreateDTO newProduct, int userId)
         {
+            STTCode e = STTCode.Existed;
             try {
                 // check có trùng tên hay không
                 if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower() && u.Status != 0))
-                    return STTCode.Existed;
+                    return Task.FromResult(STTCode.Existed);
                 // check category có tồn tại hay không
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
-                if (currentCategory == null)  return STTCode.ForeignKeyIDNotFound;
+                if (currentCategory == null)  return Task.FromResult(STTCode.ForeignKeyIDNotFound);
                 // check xem người tạo có tồn tại hay không
                 var currentUser = _context.Users.FirstOrDefault(u => u.ID == userId);
-                if (currentUser == null)  return STTCode.ForeignKeyIDNotFound;
-
+                if (currentUser == null)  return Task.FromResult(STTCode.ForeignKeyIDNotFound);
+                int imgCount;
+                if (newProduct.Imgs == null) imgCount = 0;
+                else imgCount = newProduct.Imgs.Count();
                 var newP = new Product(){
                     CategoryID = newProduct.CategoryID,
                     CreateBy = userId,
@@ -35,16 +44,17 @@ namespace PBL5BE.API.Services._Category
                     PricePerOne = newProduct.PricePerOne,
                     Status = 1,
                     isReviewed = false,
-                    PictureURL = newProduct.PictureURL,
+                    NumberOfImgs = imgCount,
                     CreateAt = DateTime.Now
                 };
                 _context.Products.Add(newP);
                 _context.SaveChanges();
+                Uploads.UpProductImgs(newProduct.Imgs, GetProductsPath(), newP.ID);
+                return Task.FromResult(STTCode.Success);
             } 
             catch(Exception) {
-                return STTCode.ServerCodeException;
+                return Task.FromResult(e);
             }
-            return STTCode.Success;
         }
         // cần cải thiện hàm delete, xoá các record phụ thuộc ở các bảng khác
         public STTCode DeleteProduct(int id)
@@ -74,24 +84,24 @@ namespace PBL5BE.API.Services._Category
                 return _context.Products.Where(p => p.ProductName.ToLower().Contains(productName.ToLower())
                 && p.Status == status).OrderByDescending(p => p.ID).Take(recordQuantity).ToList();
             else
-                return _context.Products.Where(p => p.ProductName.ToLower().Contains(productName.ToLower())
+                return _context.Products.Where (p => p.ProductName.ToLower().Contains(productName.ToLower())
                 && p.Status == status 
                 && p.CategoryID == categoryId).OrderByDescending(p => p.ID).Take(recordQuantity).ToList();
         }
 
-        public STTCode UpdateProduct(ProductDTO newProduct)
+        public Task<STTCode> UpdateProduct(ProductUpdateDTO newProduct) 
         {
             try {
                 // check xem product có tồn tại hay không
                 var currentProduct = _context.Products.FirstOrDefault(u => u.ID == newProduct.ID);
-                if (currentProduct == null) return STTCode.IDNotFound;
+                if (currentProduct == null) return Task.FromResult(STTCode.IDNotFound);
                 // check category có tồn tại hay không
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newProduct.CategoryID);
-                if (currentCategory == null)  return STTCode.ForeignKeyIDNotFound;
+                if (currentCategory == null)  return Task.FromResult(STTCode.ForeignKeyIDNotFound);
                 // check có trùng tên hay không
                 if (currentProduct.ProductName.ToLower() != newProduct.ProductName.ToLower()){
                     if(_context.Products.Any(u => u.ProductName.ToLower() == newProduct.ProductName.ToLower() && u.Status != 0))
-                        return STTCode.Existed;
+                        return Task.FromResult(STTCode.Existed);
                 }
                 currentProduct.CategoryID = newProduct.CategoryID;
                 currentProduct.ProductName = newProduct.ProductName;
@@ -100,13 +110,17 @@ namespace PBL5BE.API.Services._Category
                 currentProduct.PricePerOne = newProduct.PricePerOne;
                 currentProduct.Status = newProduct.Status;
                 currentProduct.isReviewed = false;
-                currentProduct.PictureURL = newProduct.PictureURL;
+                int imgCount;
+                if (newProduct.Imgs == null) imgCount = 0;
+                else imgCount = newProduct.Imgs.Count();
+                currentProduct.NumberOfImgs = imgCount;
                 _context.SaveChanges();
+                Uploads.UpProductImgs(newProduct.Imgs, GetProductsPath(), newProduct.ID);
+                return Task.FromResult(STTCode.Success);
             } 
             catch(Exception) {
-                return STTCode.ServerCodeException;
+                return Task.FromResult(STTCode.ServerCodeException);
             }
-            return STTCode.Success;
         }
     }
 }

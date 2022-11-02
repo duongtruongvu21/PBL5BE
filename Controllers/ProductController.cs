@@ -14,15 +14,17 @@ namespace PBL5BE.API.Controllers
     public class ProductController : BaseController
     {
         private readonly IProductService _productService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IWebHostEnvironment webHostEnvironment)
         {
             _productService = productService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost("CreateProduct")]
         [Authorize]
-        public IActionResult CreateProduct([FromBody] ProductDTO newProduct)
+        public async Task<IActionResult> CreateProduct([FromForm] ProductCreateDTO newProduct)
         {
             var isSuccess = STTCode.ServerCodeException;
             try{
@@ -32,7 +34,7 @@ namespace PBL5BE.API.Controllers
                 var jsonToken = tokenHandler.ReadToken(token);
                 var tokenS = jsonToken as JwtSecurityToken;
                 var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
-                isSuccess = _productService.CreateProduct(newProduct, int.Parse(userId));
+                isSuccess = await _productService.CreateProduct(newProduct, int.Parse(userId));
             }
             catch(Exception){}
             var returnData = new ReturnData();
@@ -47,10 +49,10 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateProduct")]
-        [Authorize]
-        public IActionResult UpdateProduct([FromBody] ProductDTO newProduct)
+        //[Authorize]
+        public async Task<IActionResult> UpdateProduct([FromForm] ProductUpdateDTO newProduct)
         {
-            var isSuccess = _productService.UpdateProduct(newProduct);
+            var isSuccess = await _productService.UpdateProduct(newProduct);
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
@@ -109,6 +111,25 @@ namespace PBL5BE.API.Controllers
                 };
                 return Ok(JsonConvert.SerializeObject(returnData));
             }
+        }
+        [HttpGet("GetProductImage")]
+        public IActionResult GetProductImage(int productId, int imgNumber = 1)
+        {
+            string path = _webHostEnvironment.WebRootPath + "\\uploads\\products";
+            var imgPath = $"{path}\\product{productId}\\image{imgNumber}.png";
+            Console.WriteLine(imgPath);
+            if(!System.IO.File.Exists(imgPath)) 
+            {
+                imgPath = _webHostEnvironment.WebRootPath + "\\uploads\\others\\noProductImg.png";
+                byte[] b = System.IO.File.ReadAllBytes(imgPath);
+                return File(b, "image/png");
+            }
+            if(System.IO.File.Exists(imgPath)) 
+            {
+                byte[] b = System.IO.File.ReadAllBytes(imgPath);
+                return File(b, "image/png");
+            }
+            return Ok("ERROR");
         }
     }
 }
