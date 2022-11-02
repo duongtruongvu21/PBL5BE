@@ -4,7 +4,7 @@ using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services._UserInfo;
 
-namespace PBL5BE.API.Services._UserInfo 
+namespace PBL5BE.API.Services._UserInfo
 {
     public class UserInfoService : IUserInfoService
     {
@@ -15,24 +15,25 @@ namespace PBL5BE.API.Services._UserInfo
             _context = context;
             _webHostEnvironment = webHost;
         }
-        
+
         string GetAvatarPath()
         {
             return _webHostEnvironment.WebRootPath + "\\uploads\\avatars";
         }
 
-        public void CreateUserInfo(User user)
+        public void CreateUserInfo(User user, UserRegister userRegister = null)
         {
-            var newUserInfo = new UserInfo() {
+            var newUserInfo = new UserInfo()
+            {
                 UserID = user.ID,
-                FirstName = "Unknow",
-                LastName = "Unknow",
+                FirstName = userRegister == null ? "Unknow" : userRegister.FirstName,
+                LastName = userRegister == null ? "Unknow" : userRegister.LastName,
                 // %5C == \
                 PictureURL = "%5Cuploads%5Cothers%5CnoAvatar.png",
-                PhoneNumber = "Unknow",
-                Sex = false,
+                PhoneNumber = userRegister == null ? "Unknow" : userRegister.PhoneNumber,
+                Sex = userRegister == null ? false : userRegister.Sex,
                 Status = 0,
-                Address = "Unknow",
+                Address = userRegister == null ? "Unknow" : userRegister.Address,
                 CitizenID = "Unknow",
                 CreateAt = DateTime.Now,
             };
@@ -44,13 +45,13 @@ namespace PBL5BE.API.Services._UserInfo
         public Task<STTCode> EditUserInfo(UserInfoEditDTO uiEdit, UserInfo existUserInfo)
         {
             STTCode e = STTCode.Existed;
-            try 
+            try
             {
                 e = STTCode.E5;
                 existUserInfo.UserID = uiEdit.UserID; e = STTCode.E1;
-                existUserInfo.FirstName = uiEdit.FirstName;  e = STTCode.E6;
+                existUserInfo.FirstName = uiEdit.FirstName; e = STTCode.E6;
                 existUserInfo.LastName = uiEdit.LastName; e = STTCode.E2;
-                existUserInfo.PictureURL = 
+                existUserInfo.PictureURL =
                     Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
                 existUserInfo.PhoneNumber = uiEdit.PhoneNumber; e = STTCode.E3;
                 existUserInfo.Sex = uiEdit.Sex; e = STTCode.E4;
@@ -61,7 +62,8 @@ namespace PBL5BE.API.Services._UserInfo
                 _context.SaveChanges();
 
                 return Task.FromResult(STTCode.Success);
-            } catch (Exception) 
+            }
+            catch (Exception)
             {
                 return Task.FromResult(e);
             }

@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PBL5BE.API.Data;
@@ -17,12 +19,12 @@ namespace PBL5BE.API.Controllers
             _userInfoService = userInfoService;
         }
 
-        
+
         [HttpPut("EditUserInfo")]
         public async Task<IActionResult> EditUserInfo([FromForm] UserInfoEditDTO userInfoDTO)
         {
             var existUI = _userInfoService.GetUserInfoByID(userInfoDTO.UserID);
-                
+
             var isSuccess = await _userInfoService.EditUserInfo(userInfoDTO, existUI);
 
 
@@ -32,10 +34,11 @@ namespace PBL5BE.API.Controllers
                     userInfoDTO.CitizenID,
                 };
 
-            if(isSuccess == STTCode.Success) 
+            if (isSuccess == STTCode.Success)
             {
                 returnData.isSuccess = true;
-            } else 
+            }
+            else
             {
                 returnData.isSuccess = false;
                 returnData.errMessage = StatusCodeService.toString(isSuccess);
@@ -45,14 +48,39 @@ namespace PBL5BE.API.Controllers
         }
 
         [HttpGet("GetUserInfos")]
-        public IActionResult GetUserInfos() 
+        public IActionResult GetUserInfos()
         {
-            var returnData = new ReturnData() {
+            var returnData = new ReturnData()
+            {
                 isSuccess = true,
                 Data = new List<object>(_userInfoService.GetUserInfos())
             };
 
             return Ok(JsonConvert.SerializeObject(returnData));
+        }
+
+        [HttpGet("TestToken")] // lấy id và email từ token
+        [Authorize] // có token mới gọi được api này
+        public IActionResult TestToken()
+        {
+            string token = Request.Headers["Authorization"];
+            // token nhận về có dạng "bearer " + token -> xoá 7 kí tự đầu
+            token = token.Substring(7);
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jsonToken = tokenHandler.ReadToken(token);
+                var tokenS = jsonToken as JwtSecurityToken;
+
+                var userid = tokenS.Claims.First(claim => claim.Type == "userid").Value;
+                var email = tokenS.Claims.First(claim => claim.Type == "email").Value;
+
+                return Ok($"userID: {userid}, Email: {email}");
+            }
+            catch (Exception)
+            {
+                return Ok($"fails token: {token}");
+            }
         }
     }
 }

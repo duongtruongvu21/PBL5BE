@@ -132,3 +132,4 @@ D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microso
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
