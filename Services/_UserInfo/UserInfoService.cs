@@ -29,12 +29,12 @@ namespace PBL5BE.API.Services._UserInfo
                 FirstName = userRegister == null ? "Unknow" : userRegister.FirstName,
                 LastName = userRegister == null ? "Unknow" : userRegister.LastName,
                 // %5C == \
-                PictureURL = "%5Cuploads%5Cothers%5CnoAvatar.png",
+                PictureURL = userRegister == null ? "%5Cuploads%5Cothers%5CnoAvatar.png" : Uploads.UpAvatar(userRegister.Avatar, GetAvatarPath(), user.ID),
                 PhoneNumber = userRegister == null ? "Unknow" : userRegister.PhoneNumber,
                 Sex = userRegister == null ? false : userRegister.Sex,
                 Status = 0,
                 Address = userRegister == null ? "Unknow" : userRegister.Address,
-                CitizenID = "Unknow",
+                CitizenID = userRegister == null ? "Unknow" : userRegister.CitizenID,
                 CreateAt = DateTime.Now,
             };
 

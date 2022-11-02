@@ -51,7 +51,7 @@ namespace PBL5BE.API.Controllers
         }
 
         [HttpPost("UserRegisterFull")]
-        public IActionResult RegisterFull([FromBody] UserRegister userRegister)
+        public IActionResult RegisterFull([FromForm] UserRegister userRegister)
         {
             var userLogin = new UserLogin() { Email = userRegister.Email, Password = userRegister.Password };
             var isSuccess = _userService.CreateUser(userLogin);

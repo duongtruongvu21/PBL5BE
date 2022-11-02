@@ -22,10 +22,13 @@ namespace PBL5BE.API.Data.DTO
         public string FirstName { get; set; }
         [MaxLength(32)]
         public string LastName { get; set; }
+        public IFormFile Avatar { get; set; }
         [MaxLength(32)]
         public string PhoneNumber { get; set; }
         [MaxLength(32)]
         public string Address { get; set; }
         public bool Sex { get; set; }
+        [MaxLength(32)]
+        public string CitizenID { get; set; }
     }
 }
