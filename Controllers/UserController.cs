@@ -24,14 +24,14 @@ namespace PBL5BE.API.Controllers
             _userInfoService = userInfoService;
             _tokenService = tokenService;
         }
-        
+
         [HttpPost("UserRegister")]
         public IActionResult Register([FromBody] UserLogin userLogin)
         {
             var isSuccess = _userService.CreateUser(userLogin);
 
             var returnData = new ReturnData();
-            if(isSuccess == STTCode.Success) 
+            if (isSuccess == STTCode.Success)
             {
                 var newUser = _userService.GetUserByEmail(userLogin.Email);
 
@@ -40,7 +40,8 @@ namespace PBL5BE.API.Controllers
                 var _code = "TestCODE31";
                 _ = SendMail.SendVerificationMail(userLogin.Email, _code);
                 returnData.isSuccess = true;
-            } else 
+            }
+            else
             {
                 returnData.isSuccess = false;
                 returnData.errMessage = StatusCodeService.toString(isSuccess);
@@ -48,7 +49,32 @@ namespace PBL5BE.API.Controllers
 
             return Ok(JsonConvert.SerializeObject(returnData));
         }
-        
+
+        [HttpPost("UserRegisterFull")]
+        public IActionResult RegisterFull([FromBody] UserRegister userRegister)
+        {
+            var userLogin = new UserLogin() { Email = userRegister.Email, Password = userRegister.Password };
+            var isSuccess = _userService.CreateUser(userLogin);
+
+            var returnData = new ReturnData();
+            if (isSuccess == STTCode.Success)
+            {
+                var newUser = _userService.GetUserByEmail(userLogin.Email);
+                _userInfoService.CreateUserInfo(newUser, userRegister);
+
+                var _code = "TestCODE31";
+                _ = SendMail.SendVerificationMail(userLogin.Email, _code);
+                returnData.isSuccess = true;
+            }
+            else
+            {
+                returnData.isSuccess = false;
+                returnData.errMessage = StatusCodeService.toString(isSuccess);
+            }
+
+            return Ok(JsonConvert.SerializeObject(returnData));
+        }
+
         [HttpPost("UserLogin")]
         public IActionResult UserLogin([FromBody] UserLogin userLogin)
         {
@@ -57,7 +83,7 @@ namespace PBL5BE.API.Controllers
             UserInfo userinfo = null;
 
             var returnData = new ReturnData();
-            if(isSuccess == STTCode.Success) 
+            if (isSuccess == STTCode.Success)
             {
                 returnData.isSuccess = true;
                 user = _userService.GetUserByEmail(userLogin.Email);
@@ -68,7 +94,8 @@ namespace PBL5BE.API.Controllers
                     token,
                     userinfo,
                 };
-            } else 
+            }
+            else
             {
                 returnData.isSuccess = false;
                 returnData.errMessage = StatusCodeService.toString(isSuccess);
@@ -78,9 +105,10 @@ namespace PBL5BE.API.Controllers
         }
 
         [HttpGet("GetUsers")]
-        public IActionResult GetUsers() 
+        public IActionResult GetUsers()
         {
-            var returnData = new ReturnData() {
+            var returnData = new ReturnData()
+            {
                 isSuccess = true,
                 Data = new List<object>(_userService.GetUsers())
             };
