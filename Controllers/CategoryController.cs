@@ -22,20 +22,6 @@ namespace PBL5BE.API.Controllers
         [Authorize]
         public IActionResult CreateCategory([FromBody] string categoryName)
         {
-            // var isSuccess = STTCode.ServerCodeException;
-            // try{
-            //     string token = Request.Headers["Authorization"];
-            //     token = token.Substring(7);
-            //     var tokenHandler = new JwtSecurityTokenHandler();
-            //     var jsonToken = tokenHandler.ReadToken(token);
-            //     var tokenS = jsonToken as JwtSecurityToken;
-            //     var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
-            //     if (userId != null)
-            //         isSuccess = _categoryService.CreateCategory(categoryName);
-            //     else
-            //         isSuccess = STTCode.InvalidToken;
-            // }
-            // catch(Exception){}
             var isSuccess = _categoryService.CreateCategory(categoryName);
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
