@@ -28,21 +28,12 @@ namespace PBL5BE.API.Services._UserInfo
                 UserID = user.ID,
                 FirstName = userRegister == null ? "Unknow" : userRegister.FirstName,
                 LastName = userRegister == null ? "Unknow" : userRegister.LastName,
-<<<<<<< HEAD
-                // %5C == \
-                PictureURL = userRegister == null ? "%5Cuploads%5Cothers%5CnoAvatar.png" : Uploads.UpAvatar(userRegister.Avatar, GetAvatarPath(), user.ID),
-=======
->>>>>>> feature/edit-user-table
                 PhoneNumber = userRegister == null ? "Unknow" : userRegister.PhoneNumber,
                 Sex = userRegister == null ? false : userRegister.Sex,
                 Status = 0,
                 Address = userRegister == null ? "Unknow" : userRegister.Address,
-<<<<<<< HEAD
-                CitizenID = userRegister == null ? "Unknow" : userRegister.CitizenID,
-=======
                 CitizenID = "Unknow",
                 Role = ALLCODE.Role_User.Key,
->>>>>>> feature/edit-user-table
                 CreateAt = DateTime.Now,
             };
 
