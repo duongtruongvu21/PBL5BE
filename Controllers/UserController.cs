@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PBL5BE.API.Data;
@@ -93,6 +95,7 @@ namespace PBL5BE.API.Controllers
                 returnData.Data = new List<object>() {
                     token,
                     userinfo,
+                    _userService.GetAccountVerificationCode(user.ID),
                 };
             }
             else
@@ -114,6 +117,43 @@ namespace PBL5BE.API.Controllers
             };
 
             return Ok(JsonConvert.SerializeObject(returnData));
+        }
+
+        [HttpPut("ChangePassword")]
+        [Authorize] // có token mới gọi được api này
+        public IActionResult ChangePassword(string oldPass, string newPass)
+        {
+            string token = Request.Headers["Authorization"];
+            // token nhận về có dạng "bearer " + token -> xoá 7 kí tự đầu
+            token = token.Substring(7);
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jsonToken = tokenHandler.ReadToken(token);
+                var tokenS = jsonToken as JwtSecurityToken;
+
+                var userid = tokenS.Claims.First(claim => claim.Type == "userid").Value;
+                var email = tokenS.Claims.First(claim => claim.Type == "email").Value;
+
+                STTCode code = _userService.ChangePassword(email, oldPass, newPass);
+
+                var returnData = new ReturnData()
+                {
+                    isSuccess = true,
+                    Data = new List<object>(){
+                        code
+                    }
+                };
+                return Ok(JsonConvert.SerializeObject(returnData));
+            }
+            catch (Exception)
+            {
+                var returnData = new ReturnData()
+                {
+                    isSuccess = false
+                };
+                return Ok(JsonConvert.SerializeObject(returnData));
+            }
         }
     }
 }

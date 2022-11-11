@@ -10,5 +10,8 @@ namespace PBL5BE.API.Services._User
         List<User> GetUsers();
         STTCode LoginUser(UserLogin userLogin);
         User GetUserByEmail(String email);
+        User GetUserByID(int id);
+        string GetAccountVerificationCode(int userID);
+        STTCode ChangePassword(string email, string oldP, string newP);
     }
 }

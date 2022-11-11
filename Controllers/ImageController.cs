@@ -44,7 +44,7 @@ namespace PBL5BE.API.Controllers
         // public IActionResult GetAvatar()
         // {
         //     string path = ""; 
-            
+
         //     try {
         //         string token = Request.Headers["Authorization"];
         //         token = token.Substring(7);
@@ -56,7 +56,7 @@ namespace PBL5BE.API.Controllers
         //     } catch(Exception) {
         //         path = "\\uploads\\others\\tokenError.png";
         //     }
-            
+
 
         //     string Path = _webHostEnvironment.WebRootPath + path;
 
@@ -68,25 +68,26 @@ namespace PBL5BE.API.Controllers
         //     return Ok("ERROR");
         // }
 
-        
-        [HttpGet("GetAvatar/{path}")]
-        public IActionResult GetAvatar(string path)
-        {
-            string Path = _webHostEnvironment.WebRootPath + path;
 
-            if(!System.IO.File.Exists(Path)) 
+        [HttpGet("GetAvatar/{userID}")]
+        public IActionResult GetAvatar(string userID)
+        {
+            string Path = _webHostEnvironment.WebRootPath +
+                            $"\\uploads\\avatars\\{userID}.png";
+
+            if (!System.IO.File.Exists(Path))
             {
                 Path = _webHostEnvironment.WebRootPath + "\\uploads\\others\\noAvatar.png";
             }
 
-            if(System.IO.File.Exists(Path)) 
+            if (System.IO.File.Exists(Path))
             {
                 byte[] b = System.IO.File.ReadAllBytes(Path);
                 return File(b, "image/png");
             }
             return Ok("ERROR");
         }
-        
+
         // [HttpPut("TestUpImage")]
         // public async Task<IActionResult> TestUpImage([FromForm] ImageDTO img)
         // {
