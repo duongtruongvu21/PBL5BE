@@ -43,9 +43,11 @@ namespace PBL5BE.API.Services._Category
                     Count = newProduct.Count,
                     PricePerOne = newProduct.PricePerOne,
                     Status = 1,
-                    isReviewed = false,
                     NumberOfImgs = imgCount,
-                    CreateAt = DateTime.Now
+                    CreateAt = DateTime.Now,
+                    SoldQuantity = 0,
+                    HtmlDescription = newProduct.HtmlDescription,
+                    MarkdownDescription = newProduct.MarkdownDescription
                 };
                 _context.Products.Add(newP);
                 _context.SaveChanges();
@@ -109,7 +111,8 @@ namespace PBL5BE.API.Services._Category
                 currentProduct.Count = newProduct.Count;
                 currentProduct.PricePerOne = newProduct.PricePerOne;
                 currentProduct.Status = newProduct.Status;
-                currentProduct.isReviewed = false;
+                currentProduct.HtmlDescription = newProduct.HtmlDescription;
+                currentProduct.MarkdownDescription = newProduct.MarkdownDescription;
                 int imgCount;
                 if (newProduct.Imgs == null) imgCount = 0;
                 else imgCount = newProduct.Imgs.Count();

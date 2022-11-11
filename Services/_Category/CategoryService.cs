@@ -1,4 +1,5 @@
 using PBL5BE.API.Data;
+using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 
@@ -12,16 +13,17 @@ namespace PBL5BE.API.Services._Category
             _context = context;
         }
 
-        public STTCode CreateCategory(string categoryName)
+        public STTCode CreateCategory(CategoryCreateDTO newCategory)
         {
             try 
             {
-                if(_context.Categories.Any(u => u.CategoryName.ToLower() == categoryName.ToLower()))
+                if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
                 {
                     return STTCode.Existed;
                 }
                 var newC = new Category(){
-                    CategoryName = categoryName,
+                    CategoryName = newCategory.CategoryName,
+                    imgUrl = newCategory.imgUrl,
                     Status = 1
                 };
                 _context.Categories.Add(newC);
@@ -42,6 +44,8 @@ namespace PBL5BE.API.Services._Category
                     return STTCode.Existed;
                 }
                 currentCategory.CategoryName = newCategory.CategoryName;
+                currentCategory.imgUrl = newCategory.imgUrl;
+                currentCategory.Status = newCategory.Status;
                 _context.SaveChanges();
             } 
             catch(Exception) {

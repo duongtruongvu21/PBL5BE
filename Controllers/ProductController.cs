@@ -49,7 +49,7 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateProduct")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdateProduct([FromForm] ProductUpdateDTO newProduct)
         {
             var isSuccess = await _productService.UpdateProduct(newProduct);

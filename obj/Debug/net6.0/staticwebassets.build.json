@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IEVs2ay6SOz8wkvFatznPrMUGvCclF6SF4xEl5BC+t4=",
+  "Hash": "3L+RhtPzqYgthvNqsphDYtwOsoCEkeBcBxG6k+69hEU=",
   "Source": "PBL5BE.API",
   "BasePath": "_content/PBL5BE.API",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\product14\\image1.png"
+    },
+    {
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\products\\product16\\image1.png",
+      "SourceId": "PBL5BE.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "BasePath": "_content/PBL5BE.API",
+      "RelativePath": "uploads/products/product16/image1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\product16\\image1.png"
     },
     {
       "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\products\\product2\\image1.png",
