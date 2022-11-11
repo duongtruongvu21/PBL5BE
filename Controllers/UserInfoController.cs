@@ -82,5 +82,24 @@ namespace PBL5BE.API.Controllers
                 return Ok($"fails token: {token}");
             }
         }
+
+
+
+
+        [HttpGet("GetUserInfoByID/{id}")]
+        public IActionResult GetUserInfoByID(int id)
+        {
+            var returnData = new ReturnData()
+            {
+                isSuccess = true,
+                Data = new List<object>()
+            };
+
+            returnData.Data = new List<object>() {
+                _userInfoService.GetUserInfoByID(id)
+            };
+
+            return Ok(JsonConvert.SerializeObject(returnData));
+        }
     }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\appsettings.json
 C:\Users\TruongVu\Desktop\PBL5BE\bin\Debug\net6.0\PBL5BE.API.staticwebassets.runtime.json
@@ -88,3 +89,50 @@ D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\refint\
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\PBL5BE.API.pdb
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\PBL5BE.API.genruntimeconfig.cache
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\ref\PBL5BE.API.dll
+=======
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\appsettings.json
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\PBL5BE.API.staticwebassets.runtime.json
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\PBL5BE.API.exe
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\PBL5BE.API.deps.json
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\PBL5BE.API.runtimeconfig.json
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\PBL5BE.API.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\PBL5BE.API.pdb
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Humanizer.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.csproj.AssemblyReference.cache
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.AssemblyInfoInputs.cache
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.AssemblyInfo.cs
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.csproj.CoreCompileInputs.cache
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\scopedcss\bundle\PBL5BE.API.styles.css
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.csproj.CopyComplete
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\refint\PBL5BE.API.dll
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.pdb
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\PBL5BE.API.genruntimeconfig.cache
+C:\Users\Vu\Desktop\PBL5\PBL5BE.API\obj\Debug\net6.0\ref\PBL5BE.API.dll
+>>>>>>> feature/edit-user-table

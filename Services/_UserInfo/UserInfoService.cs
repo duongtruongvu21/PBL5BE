@@ -28,13 +28,21 @@ namespace PBL5BE.API.Services._UserInfo
                 UserID = user.ID,
                 FirstName = userRegister == null ? "Unknow" : userRegister.FirstName,
                 LastName = userRegister == null ? "Unknow" : userRegister.LastName,
+<<<<<<< HEAD
                 // %5C == \
                 PictureURL = userRegister == null ? "%5Cuploads%5Cothers%5CnoAvatar.png" : Uploads.UpAvatar(userRegister.Avatar, GetAvatarPath(), user.ID),
+=======
+>>>>>>> feature/edit-user-table
                 PhoneNumber = userRegister == null ? "Unknow" : userRegister.PhoneNumber,
                 Sex = userRegister == null ? false : userRegister.Sex,
                 Status = 0,
                 Address = userRegister == null ? "Unknow" : userRegister.Address,
+<<<<<<< HEAD
                 CitizenID = userRegister == null ? "Unknow" : userRegister.CitizenID,
+=======
+                CitizenID = "Unknow",
+                Role = ALLCODE.Role_User.Key,
+>>>>>>> feature/edit-user-table
                 CreateAt = DateTime.Now,
             };
 
@@ -44,17 +52,15 @@ namespace PBL5BE.API.Services._UserInfo
 
         public Task<STTCode> EditUserInfo(UserInfoEditDTO uiEdit, UserInfo existUserInfo)
         {
-            STTCode e = STTCode.Existed;
             try
             {
-                e = STTCode.E5;
-                existUserInfo.UserID = uiEdit.UserID; e = STTCode.E1;
-                existUserInfo.FirstName = uiEdit.FirstName; e = STTCode.E6;
-                existUserInfo.LastName = uiEdit.LastName; e = STTCode.E2;
-                existUserInfo.PictureURL =
-                    Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
-                existUserInfo.PhoneNumber = uiEdit.PhoneNumber; e = STTCode.E3;
-                existUserInfo.Sex = uiEdit.Sex; e = STTCode.E4;
+                existUserInfo.UserID = uiEdit.UserID;
+                existUserInfo.FirstName = uiEdit.FirstName;
+                existUserInfo.LastName = uiEdit.LastName;
+                _ = Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
+                existUserInfo.Role = uiEdit.Role;
+                existUserInfo.PhoneNumber = uiEdit.PhoneNumber;
+                existUserInfo.Sex = uiEdit.Sex;
                 existUserInfo.Status = 1;
                 existUserInfo.Address = uiEdit.Address;
                 existUserInfo.CitizenID = uiEdit.CitizenID;
@@ -65,7 +71,7 @@ namespace PBL5BE.API.Services._UserInfo
             }
             catch (Exception)
             {
-                return Task.FromResult(e);
+                return Task.FromResult(STTCode.ServerCodeException);
             }
         }
 

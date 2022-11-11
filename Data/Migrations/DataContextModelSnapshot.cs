@@ -135,8 +135,9 @@ namespace PBL5BE.API.Data.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
-                    b.Property<string>("PictureURL")
-                        .HasColumnType("longtext");
+                    b.Property<string>("Role")
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
 
                     b.Property<bool>("Sex")
                         .HasColumnType("tinyint(1)");
