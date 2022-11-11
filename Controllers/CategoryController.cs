@@ -20,7 +20,7 @@ namespace PBL5BE.API.Controllers
             _categoryService = categoryService;
         }
         [HttpPost("CreateCategory")]
-        [Authorize]
+        //[Authorize]
         public IActionResult CreateCategory([FromBody] CategoryCreateDTO newCategory)
         {
             var isSuccess = _categoryService.CreateCategory(newCategory);
@@ -36,7 +36,7 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateCategory")]
-        [Authorize]
+        //[Authorize]
         public IActionResult UpdateCategory([FromBody] Category newCategory)
         {
             var isSuccess = _categoryService.UpdateCategory(newCategory);
@@ -52,7 +52,7 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpDelete("DeleteCategory")]
-        [Authorize]
+        //[Authorize]
         public IActionResult DeleteCategory(int id)
         {
             var isSuccess = _categoryService.DeleteCategory(id);

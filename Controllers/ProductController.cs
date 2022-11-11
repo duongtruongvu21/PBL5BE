@@ -8,6 +8,7 @@ using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._Category;
+using PBL5BE.API.Services._Product;
 
 namespace PBL5BE.API.Controllers
 {

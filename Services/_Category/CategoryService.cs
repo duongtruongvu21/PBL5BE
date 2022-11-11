@@ -57,7 +57,7 @@ namespace PBL5BE.API.Services._Category
         public STTCode DeleteCategory(int id){
             try{
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == id);
-                if (currentCategory != null) _context.Categories.Remove(currentCategory);
+                if (currentCategory != null) currentCategory.Status = 0;
                 else return STTCode.IDNotFound;
                 _context.SaveChanges();
             }

@@ -7,6 +7,9 @@ using PBL5BE.API.Services._Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using PBL5BE.API.Services._Product;
+using PBL5BE.API.Services._Order;
+using PBL5BE.API.Services._OrderDetail;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -46,6 +49,8 @@ services.AddScoped<IUserService, UserService>();
 services.AddScoped<IUserInfoService, UserInfoService>();
 services.AddScoped<ICategoryService, CategoryService>();
 services.AddScoped<IProductService, ProductService>();
+services.AddScoped<IOrderService, OrderService>();
+services.AddScoped<IOrderDetailService, OrderDetailService>();
 
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
