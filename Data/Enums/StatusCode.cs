@@ -10,6 +10,7 @@ namespace PBL5BE.API.Data.Enums
             IDNotFound = -1,
             ServerCodeException = 0,
             Success = 1,
+            OrderIsPaid,
             
             E1 = 5,
             E2 = 6,

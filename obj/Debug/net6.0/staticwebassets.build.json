@@ -1,10 +1,14 @@
 {
   "Version": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "Hash": "IEVs2ay6SOz8wkvFatznPrMUGvCclF6SF4xEl5BC+t4=",
 =======
   "Hash": "RHSr2B7fUieD3YuHMa2RFlaE9c0eJp+mJvgo7l6l3Sc=",
 >>>>>>> feature/edit-user-table
+=======
+  "Hash": "3L+RhtPzqYgthvNqsphDYtwOsoCEkeBcBxG6k+69hEU=",
+>>>>>>> origin/feature/orderAPI
   "Source": "PBL5BE.API",
   "BasePath": "_content/PBL5BE.API",
   "Mode": "Default",
@@ -203,7 +207,28 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\product14\\image1.png"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\products\\product2\\image1.png",
+=======
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\products\\product16\\image1.png",
+      "SourceId": "PBL5BE.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "BasePath": "_content/PBL5BE.API",
+      "RelativePath": "uploads/products/product16/image1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\product16\\image1.png"
+    },
+    {
+      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\products\\product2\\image1.png",
+>>>>>>> origin/feature/orderAPI
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",

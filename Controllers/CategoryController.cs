@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using PBL5BE.API.Data;
+using PBL5BE.API.Data.DTO;
 using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
@@ -19,10 +20,10 @@ namespace PBL5BE.API.Controllers
             _categoryService = categoryService;
         }
         [HttpPost("CreateCategory")]
-        [Authorize]
-        public IActionResult CreateCategory([FromBody] string categoryName)
+        //[Authorize]
+        public IActionResult CreateCategory([FromBody] CategoryCreateDTO newCategory)
         {
-            var isSuccess = _categoryService.CreateCategory(categoryName);
+            var isSuccess = _categoryService.CreateCategory(newCategory);
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
@@ -35,7 +36,7 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateCategory")]
-        [Authorize]
+        //[Authorize]
         public IActionResult UpdateCategory([FromBody] Category newCategory)
         {
             var isSuccess = _categoryService.UpdateCategory(newCategory);
@@ -51,7 +52,7 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpDelete("DeleteCategory")]
-        [Authorize]
+        //[Authorize]
         public IActionResult DeleteCategory(int id)
         {
             var isSuccess = _categoryService.DeleteCategory(id);

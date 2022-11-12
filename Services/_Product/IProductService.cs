@@ -2,7 +2,7 @@ using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Data.DTO;
 
-namespace PBL5BE.API.Services._Category
+namespace PBL5BE.API.Services._Product
 {
     public interface IProductService
     {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBL5BE.API.Data;
 
@@ -10,9 +11,10 @@ using PBL5BE.API.Data;
 namespace PBL5BE.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221110231841_UpdateProduct_Category")]
+    partial class UpdateProduct_Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,58 +42,6 @@ namespace PBL5BE.API.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("PBL5BE.API.Data.Entities.Order", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("CreateBy")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint unsigned");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("PBL5BE.API.Data.Entities.OrderDetail", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("varchar(1000)");
-
-                    b.Property<int>("OrderID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<float>("Total")
-                        .HasColumnType("float");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("PBL5BE.API.Data.Entities.Product", b =>
@@ -197,9 +147,8 @@ namespace PBL5BE.API.Data.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
-                    b.Property<string>("Role")
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
+                    b.Property<string>("PictureURL")
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("Sex")
                         .HasColumnType("tinyint(1)");

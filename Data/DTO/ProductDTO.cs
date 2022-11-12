@@ -12,12 +12,14 @@ namespace PBL5BE.API.Data.DTO
         public string ProductName { get; set; }
         [MaxLength(1000)]
         public string Description { get; set; }
+        public string HtmlDescription { get; set; }
+        public string MarkdownDescription { get; set; }
         [Required]
         public int Count { get; set; } = 1;
         [Required]
         public float PricePerOne { get; set; }
+        [Required]
         public byte Status { get; set; } = 1;
-        public bool isReviewed { get; set; } = false;
         public List<IFormFile> Imgs { get; set; }
     }
     public class ProductCreateDTO
@@ -28,6 +30,8 @@ namespace PBL5BE.API.Data.DTO
         public string ProductName { get; set; }
         [MaxLength(1000)]
         public string Description { get; set; }
+        public string HtmlDescription { get; set; }
+        public string MarkdownDescription { get; set; }
         [Required]
         public int Count { get; set; } = 1;
         [Required]

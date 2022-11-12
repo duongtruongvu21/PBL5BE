@@ -24,6 +24,8 @@ namespace PBL5BE.API.Services
                     return "Đã tồn tại tài khoản này";
                 case STTCode.UserNotExist:
                     return "Không tồn tại tài khoản này";
+                case STTCode.OrderIsPaid:
+                    return "Không thể xoá OrderDetail của một Order đã thanh toán";
                 case STTCode.E1:
                     return "E1";
                 case STTCode.E2:
