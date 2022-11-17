@@ -13,5 +13,6 @@ namespace PBL5BE.API.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Cart> CartItems { get; set; }
     }
 }

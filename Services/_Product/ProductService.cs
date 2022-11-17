@@ -114,11 +114,12 @@ namespace PBL5BE.API.Services._Product
                 currentProduct.HtmlDescription = newProduct.HtmlDescription;
                 currentProduct.MarkdownDescription = newProduct.MarkdownDescription;
                 int imgCount;
-                if (newProduct.Imgs == null) imgCount = 0;
-                else imgCount = newProduct.Imgs.Count();
-                currentProduct.NumberOfImgs = imgCount;
+                if (!(newProduct.Imgs == null)){
+                    imgCount = newProduct.Imgs.Count();
+                    currentProduct.NumberOfImgs = imgCount;
+                    Uploads.UpProductImgs(newProduct.Imgs, GetProductsPath(), newProduct.ID);
+                }
                 _context.SaveChanges();
-                Uploads.UpProductImgs(newProduct.Imgs, GetProductsPath(), newProduct.ID);
                 return Task.FromResult(STTCode.Success);
             } 
             catch(Exception) {

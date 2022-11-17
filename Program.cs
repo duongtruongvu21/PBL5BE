@@ -10,6 +10,7 @@ using System.Text;
 using PBL5BE.API.Services._Product;
 using PBL5BE.API.Services._Order;
 using PBL5BE.API.Services._OrderDetail;
+using PBL5BE.API.Services._Cart;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -35,6 +36,7 @@ builder.Services.AddCors(options =>
 });
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+// var serverVersion = new MySqlServerVersion(new Version(10, 4, 25));
 // Replace 'YourDbContext' with the name of your own DbContext derived class.
 services.AddDbContext<DataContext>(
     dbContextOptions => dbContextOptions
@@ -51,6 +53,7 @@ services.AddScoped<ICategoryService, CategoryService>();
 services.AddScoped<IProductService, ProductService>();
 services.AddScoped<IOrderService, OrderService>();
 services.AddScoped<IOrderDetailService, OrderDetailService>();
+services.AddScoped<ICartService, CartService>();
 
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

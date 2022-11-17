@@ -11,6 +11,7 @@ namespace PBL5BE.API.Data.Enums
             ServerCodeException = 0,
             Success = 1,
             OrderIsPaid,
+            NoAccess = -9,
             
             E1 = 5,
             E2 = 6,
