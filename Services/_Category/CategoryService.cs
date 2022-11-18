@@ -39,10 +39,9 @@ namespace PBL5BE.API.Services._Category
             try {
                 var currentCategory = _context.Categories.FirstOrDefault(u => u.ID == newCategory.ID);
                 if(currentCategory == null)  return STTCode.IDNotFound;
-                if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
-                {
-                    return STTCode.Existed;
-                }
+                if(currentCategory.CategoryName.ToLower() != newCategory.CategoryName.ToLower())
+                    if(_context.Categories.Any(u => u.CategoryName.ToLower() == newCategory.CategoryName.ToLower()))
+                        return STTCode.Existed;
                 currentCategory.CategoryName = newCategory.CategoryName;
                 currentCategory.imgUrl = newCategory.imgUrl;
                 currentCategory.Status = newCategory.Status;
@@ -69,6 +68,13 @@ namespace PBL5BE.API.Services._Category
         public List<Category> GetCategories()
         {
             return _context.Categories.ToList();
+        }
+
+        public string GetCategoryNameByID(int id)
+        {
+            var currentCategory = _context.Categories.FirstOrDefault(c => c.ID == id);
+            if (currentCategory == null) return "Khong ton tai";
+            return currentCategory.CategoryName;
         }
     }
 }

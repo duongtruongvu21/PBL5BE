@@ -2,12 +2,16 @@
   "Version": 1,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "Hash": "IEVs2ay6SOz8wkvFatznPrMUGvCclF6SF4xEl5BC+t4=",
 =======
   "Hash": "RHSr2B7fUieD3YuHMa2RFlaE9c0eJp+mJvgo7l6l3Sc=",
 >>>>>>> feature/edit-user-table
 =======
   "Hash": "3L+RhtPzqYgthvNqsphDYtwOsoCEkeBcBxG6k+69hEU=",
+>>>>>>> origin/feature/orderAPI
+=======
+  "Hash": "lmoi6hUdMRDhNk/EbypHljaLAHZuT7IeXWgVYvtcFU4=",
 >>>>>>> origin/feature/orderAPI
   "Source": "PBL5BE.API",
   "BasePath": "_content/PBL5BE.API",
@@ -225,6 +229,7 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\product16\\image1.png"
+<<<<<<< HEAD
     },
     {
       "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\products\\product2\\image1.png",
@@ -277,6 +282,8 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\product2\\image3.png"
+=======
+>>>>>>> origin/feature/orderAPI
     }
   ]
 }

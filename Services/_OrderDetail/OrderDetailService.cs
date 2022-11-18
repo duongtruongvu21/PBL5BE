@@ -22,7 +22,7 @@ namespace PBL5BE.API.Services._OrderDetail
                     Description = orderDetail.Description,
                     ProductCount = orderDetail.ProductCount,
                     ProductID = orderDetail.ProductID,
-                    Total = orderDetail.Total
+                    PricePerOne = orderDetail.PricePerOne
                 };
                 _context.OrderDetails.Add(od);
                 _context.SaveChanges();
@@ -69,7 +69,7 @@ namespace PBL5BE.API.Services._OrderDetail
                 if (od == null) return STTCode.IDNotFound;
                 od.Description = orderDetail.Description;
                 od.ProductCount = orderDetail.ProductCount;
-                od.Total = orderDetail.Total;
+                od.PricePerOne = orderDetail.PricePerOne;
                 _context.SaveChanges();
                 return STTCode.Success;
             }

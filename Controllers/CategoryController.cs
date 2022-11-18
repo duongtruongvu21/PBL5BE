@@ -77,5 +77,10 @@ namespace PBL5BE.API.Controllers
             returnData.Data = data;
             return Ok(JsonConvert.SerializeObject(returnData));
         }
+        [HttpGet("GetCategoryNameByID")]
+        public IActionResult GetCategoryNameByID(int id) 
+        {
+            return Ok(_categoryService.GetCategoryNameByID(id));
+        }
     }
 }

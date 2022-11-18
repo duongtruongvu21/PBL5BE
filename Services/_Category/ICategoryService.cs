@@ -9,5 +9,6 @@ namespace PBL5BE.API.Services._Category
         STTCode UpdateCategory(Category newCategory);
         STTCode DeleteCategory(int id);
         List<Category> GetCategories();
+        String GetCategoryNameByID(int id);
     }
 }

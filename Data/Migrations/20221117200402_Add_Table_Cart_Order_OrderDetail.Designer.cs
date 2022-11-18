@@ -11,8 +11,8 @@ using PBL5BE.API.Data;
 namespace PBL5BE.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221111095447_Add_Order_OrderDetail")]
-    partial class Add_Order_OrderDetail
+    [Migration("20221117200402_Add_Table_Cart_Order_OrderDetail")]
+    partial class Add_Table_Cart_Order_OrderDetail
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,33 @@ namespace PBL5BE.API.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("PBL5BE.API.Data.Entities.Cart", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<float>("PricePerOne")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CartItems");
+                });
 
             modelBuilder.Entity("PBL5BE.API.Data.Entities.Category", b =>
                 {
@@ -51,7 +78,6 @@ namespace PBL5BE.API.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
@@ -82,14 +108,14 @@ namespace PBL5BE.API.Data.Migrations
                     b.Property<int>("OrderID")
                         .HasColumnType("int");
 
+                    b.Property<float>("PricePerOne")
+                        .HasColumnType("float");
+
                     b.Property<int>("ProductCount")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
-
-                    b.Property<float>("Total")
-                        .HasColumnType("float");
 
                     b.HasKey("ID");
 

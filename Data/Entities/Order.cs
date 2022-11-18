@@ -8,6 +8,7 @@ namespace PBL5BE.API.Data.Entities
         [Key]
         public int ID { get; set; }
         [StringLength(255)]
+        public int NumberOfProducts { get; set; }
         public string Address { get; set; }
         public byte Status { get; set; }
         public DateTime CreateAt { get; set; }
