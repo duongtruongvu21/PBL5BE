@@ -1,18 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "Hash": "IEVs2ay6SOz8wkvFatznPrMUGvCclF6SF4xEl5BC+t4=",
-=======
-  "Hash": "RHSr2B7fUieD3YuHMa2RFlaE9c0eJp+mJvgo7l6l3Sc=",
->>>>>>> feature/edit-user-table
-=======
-  "Hash": "3L+RhtPzqYgthvNqsphDYtwOsoCEkeBcBxG6k+69hEU=",
->>>>>>> origin/feature/orderAPI
-=======
-  "Hash": "lmoi6hUdMRDhNk/EbypHljaLAHZuT7IeXWgVYvtcFU4=",
->>>>>>> origin/feature/orderAPI
+  "Hash": "KaHGzLaBHljQeLzpzfTwxNbL2lHJdSbBPbUk035uTHg=",
   "Source": "PBL5BE.API",
   "BasePath": "_content/PBL5BE.API",
   "Mode": "Default",
@@ -22,17 +10,17 @@
     {
       "Name": "PBL5BE.API\\wwwroot",
       "Source": "PBL5BE.API",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\avatars\\user1.png",
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\avatars\\user1.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/avatars/user1.png",
       "AssetKind": "All",
@@ -46,10 +34,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\avatars\\user1.png"
     },
     {
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\avatars\\user2.png",
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\avatars\\user2.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/avatars/user2.png",
       "AssetKind": "All",
@@ -63,9 +51,6 @@
       "OriginalItemSpec": "wwwroot\\uploads\\avatars\\user2.png"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\error.png",
-=======
       "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\avatars\\user6.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
@@ -84,10 +69,9 @@
     },
     {
       "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\error.png",
->>>>>>> feature/edit-user-table
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/error.png",
       "AssetKind": "All",
@@ -101,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\error.png"
     },
     {
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\noAvatar.png",
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\noAvatar.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/noAvatar.png",
       "AssetKind": "All",
@@ -118,11 +102,7 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\noAvatar.png"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\noProductImg.png",
-=======
       "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\noProductImg.png",
->>>>>>> feature/edit-user-table
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
@@ -139,14 +119,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\noProductImg.png"
     },
     {
-<<<<<<< HEAD
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\test.png",
-=======
       "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\test.png",
->>>>>>> feature/edit-user-table
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/test.png",
       "AssetKind": "All",
@@ -160,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\test.png"
     },
     {
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\testtt.png",
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\testtt.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/testtt.png",
       "AssetKind": "All",
@@ -177,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\others\\testtt.png"
     },
     {
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\others\\tokenError.png",
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\others\\tokenError.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/others/tokenError.png",
       "AssetKind": "All",
@@ -211,13 +187,10 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\product14\\image1.png"
     },
     {
-<<<<<<< HEAD
-      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\products\\product2\\image1.png",
-=======
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\products\\product16\\image1.png",
+      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\products\\product16\\image1.png",
       "SourceId": "PBL5BE.API",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
       "BasePath": "_content/PBL5BE.API",
       "RelativePath": "uploads/products/product16/image1.png",
       "AssetKind": "All",
@@ -229,61 +202,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\product16\\image1.png"
-<<<<<<< HEAD
-    },
-    {
-      "Identity": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\wwwroot\\uploads\\products\\product2\\image1.png",
->>>>>>> origin/feature/orderAPI
-      "SourceId": "PBL5BE.API",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
-      "BasePath": "_content/PBL5BE.API",
-      "RelativePath": "uploads/products/product2/image1.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\products\\product2\\image1.png"
-    },
-    {
-      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\products\\product2\\image2.png",
-      "SourceId": "PBL5BE.API",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
-      "BasePath": "_content/PBL5BE.API",
-      "RelativePath": "uploads/products/product2/image2.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\products\\product2\\image2.png"
-    },
-    {
-      "Identity": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\uploads\\products\\product2\\image3.png",
-      "SourceId": "PBL5BE.API",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\wwwroot\\",
-      "BasePath": "_content/PBL5BE.API",
-      "RelativePath": "uploads/products/product2/image3.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\products\\product2\\image3.png"
-=======
->>>>>>> origin/feature/orderAPI
     }
   ]
 }

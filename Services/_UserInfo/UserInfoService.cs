@@ -48,7 +48,7 @@ namespace PBL5BE.API.Services._UserInfo
                 existUserInfo.UserID = uiEdit.UserID;
                 existUserInfo.FirstName = uiEdit.FirstName;
                 existUserInfo.LastName = uiEdit.LastName;
-                _ = Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
+                Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
                 existUserInfo.Role = uiEdit.Role;
                 existUserInfo.PhoneNumber = uiEdit.PhoneNumber;
                 existUserInfo.Sex = uiEdit.Sex;
