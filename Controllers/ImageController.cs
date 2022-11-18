@@ -73,7 +73,7 @@ namespace PBL5BE.API.Controllers
         public IActionResult GetAvatar(string userID)
         {
             string Path = _webHostEnvironment.WebRootPath +
-                            $"\\uploads\\avatars\\{userID}.png";
+                            $"\\uploads\\avatars\\user{userID}.png";
 
             if (!System.IO.File.Exists(Path))
             {

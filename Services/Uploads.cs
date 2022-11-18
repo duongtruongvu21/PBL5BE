@@ -5,35 +5,37 @@ namespace PBL5BE.API.Services
 {
     public class Uploads
     {
-        public static string UpAvatar(IFormFile img, string path, int userID) 
+        public static void UpAvatar(IFormFile img, string path, int userID)
         {
             try
             {
+                if (img.FileName.Length < 0) return;
                 var filePath = $"{path}\\user{userID}.png";
-                if(System.IO.Directory.Exists(filePath))
+
+                if (System.IO.Directory.Exists(filePath))
                 {
                     System.IO.Directory.Delete(filePath);
                 }
 
-                using(FileStream stream = System.IO.File.Create(filePath))
+                using (FileStream stream = System.IO.File.Create(filePath))
                 {
                     img.CopyTo(stream);
                 }
-                return $"%5Cuploads%5Cavatars%5Cuser{userID}.png";
             }
             catch (Exception)
             {
-                return "%5Cuploads%5Cavatars%5Cerror.png";
+                return;
             }
         }
-        public static string UpProductImgs(List<IFormFile> imgs, string path, int productId) 
+        public static string UpProductImgs(List<IFormFile> imgs, string path, int productId)
         {
             try
             {
                 string returnPath = $"%5Cuploads%5Cproducts%5Cproduct{productId}";
                 // xoá thư mục cũ
                 var directoryPath = $"{path}\\product{productId}";
-                if(System.IO.Directory.Exists(directoryPath)){
+                if (System.IO.Directory.Exists(directoryPath))
+                {
                     System.IO.DirectoryInfo dir = new DirectoryInfo(directoryPath);
                     if (dir != null) dir.Delete(true);
                 }
@@ -41,11 +43,13 @@ namespace PBL5BE.API.Services
                 if (imgs == null) return returnPath;
                 // duyệt hết ảnh mới
                 int i = 1;
-                foreach (IFormFile img in imgs){
+                foreach (IFormFile img in imgs)
+                {
                     System.IO.Directory.CreateDirectory(directoryPath);
                     var imgPath = $"{directoryPath}\\image{i}.png";
                     i += 1;
-                    using(FileStream stream = System.IO.File.Create(imgPath)){
+                    using (FileStream stream = System.IO.File.Create(imgPath))
+                    {
                         img.CopyTo(stream);
                     }
                 }
@@ -59,17 +63,17 @@ namespace PBL5BE.API.Services
             }
         }
 
-        public static string TestUpImg(IFormFile img, string path) 
+        public static string TestUpImg(IFormFile img, string path)
         {
             try
             {
                 var filePath = $"{path}\\test.png";
-                if(System.IO.Directory.Exists(filePath))
+                if (System.IO.Directory.Exists(filePath))
                 {
                     System.IO.Directory.Delete(filePath);
                 }
 
-                using(FileStream stream = System.IO.File.Create(filePath))
+                using (FileStream stream = System.IO.File.Create(filePath))
                 {
                     img.CopyTo(stream);
                 }
