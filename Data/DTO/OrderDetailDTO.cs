@@ -30,4 +30,15 @@ namespace PBL5BE.API.Data.DTO
         [StringLength(1000)]
         public string Description { get; set; }
     }
+    public class OrderDetailGetDTO
+    {
+        public int ID { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public int ProductCount { get; set; }
+        public float PricePerOne { get; set; }
+        [StringLength(1000)]
+        public string Description { get; set; }
+    }
 }

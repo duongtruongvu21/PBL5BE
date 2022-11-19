@@ -74,27 +74,27 @@ namespace PBL5BE.API.Controllers
 
             return Ok(JsonConvert.SerializeObject(returnData));
         }
-        [HttpGet("GetCartItemByID")]
-        public IActionResult GetCartItemByID(int id)
-        {
-            try {
-                Cart c = _cartService.GetCartItemByID(id);
-                var returnData = new ReturnData() {
-                    isSuccess = true,
-                    Data = new List<object>() {
-                        c,
-                    }
-                };
-                return Ok(JsonConvert.SerializeObject(returnData));
-            }
-            catch(Exception){
-                var returnData = new ReturnData() {
-                    isSuccess = false,
-                    errMessage = StatusCodeService.toString(STTCode.IDNotFound)
-                };
-                return Ok(JsonConvert.SerializeObject(returnData));
-            }
-        }
+        // [HttpGet("GetCartItemByID")]
+        // public IActionResult GetCartItemByID(int id)
+        // {
+        //     try {
+        //         Cart c = _cartService.GetCartItemByID(id);
+        //         var returnData = new ReturnData() {
+        //             isSuccess = true,
+        //             Data = new List<object>() {
+        //                 c,
+        //             }
+        //         };
+        //         return Ok(JsonConvert.SerializeObject(returnData));
+        //     }
+        //     catch(Exception){
+        //         var returnData = new ReturnData() {
+        //             isSuccess = false,
+        //             errMessage = StatusCodeService.toString(STTCode.IDNotFound)
+        //         };
+        //         return Ok(JsonConvert.SerializeObject(returnData));
+        //     }
+        // }
         [HttpGet("GetCartItemsByUserID")]
         public IActionResult GetCartItemsByUserID(int id) 
         {

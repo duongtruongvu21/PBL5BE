@@ -31,4 +31,15 @@ namespace PBL5BE.API.Data.DTO
         [Required] [StringLength(200)]
         public String Address { get; set; }
     }
+    public class CartGetDTO
+    {
+        public int ID { get; set; }
+        public int UserID { get; set; }
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public int ProductQuantityLeft { get; set; }
+        public int ProductCount { get; set; }
+        public float PricePerOne { get; set; }
+        public string Description { get; set; }
+    }
 }
