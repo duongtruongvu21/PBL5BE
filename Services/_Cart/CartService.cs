@@ -62,19 +62,46 @@ namespace PBL5BE.API.Services._Cart
             }
         }
 
-        public List<Cart> GetCartItemsByUserID(int id)
+        public List<CartGetDTO> GetCartItemsByUserID(int id)
         {
-            List<Cart> data = _context.CartItems.Where(c => c.UserID == id).OrderByDescending(c => c.ID).ToList();
-            foreach (Cart c in data){
-                c.PricePerOne = _context.Products.FirstOrDefault(p => p.ID == c.ProductID).PricePerOne;
+            List<CartGetDTO> data = new List<CartGetDTO>();
+            List<Cart> cs = _context.CartItems.Where(c => c.UserID == id).OrderByDescending(c => c.ID).ToList();
+            foreach (Cart c in cs){
+                Product p = _context.Products.FirstOrDefault(p => p.ID == c.ProductID);
+                CartGetDTO cgd = new CartGetDTO{
+                    Description = c.Description,
+                    ID = c.ID,
+                    PricePerOne = c.PricePerOne,
+                    ProductCount = c.ProductCount,
+                    ProductID = c.ProductID,
+                    UserID = c.UserID,
+                    ProductName = p.ProductName,
+                    ProductQuantityLeft = p.Count
+                };
+                data.Add(cgd);
             }
             return data;
         }
 
-        public List<OrderDetail> GetOrderDetailsByOrderID(int orderID)
+        public List<OrderDetailGetDTO> GetOrderDetailsByOrderID(int orderID)
         {
             if (!_context.Orders.Any(o => o.ID == orderID)) throw new Exception("not found");
-            return _context.OrderDetails.Where(od => od.OrderID == orderID).OrderByDescending(od => od.ID).ToList();
+            List<OrderDetail> ods =  _context.OrderDetails.Where(od => od.OrderID == orderID).OrderByDescending(od => od.ID).ToList();
+            List<OrderDetailGetDTO> data = new List<OrderDetailGetDTO>();
+            foreach(OrderDetail od in ods){
+                Product p = _context.Products.FirstOrDefault(p => p.ID == od.ProductID);
+                OrderDetailGetDTO o = new OrderDetailGetDTO{
+                    ID = od.ID,
+                    Description = od.Description,
+                    OrderID = od.OrderID,
+                    PricePerOne = od.PricePerOne,
+                    ProductCount = od.ProductCount,
+                    ProductID = od.ProductID,
+                    ProductName = p.ProductName
+                };
+                data.Add(o);
+            }
+            return data;
         }
 
         public List<Order> GetOrders(int status, int userID, int recordQuantity)
