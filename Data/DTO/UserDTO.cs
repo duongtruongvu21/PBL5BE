@@ -2,22 +2,33 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PBL5BE.API.Data.DTO
 {
-    public class UserRegister
-    {
-        [Required]
-        public string Username {get; set;}
-        [Required]
-        public string Password {get; set;}
-        [EmailAddress][Required]
-        public string Email {get; set;}
-    }
-
-
     public class UserLogin
     {
         [Required]
-        public string Username {get; set;}
+        [EmailAddress]
+        public string Email { get; set; }
         [Required]
-        public string Password {get; set;}
+        public string Password { get; set; }
+    }
+
+    public class UserRegister
+    {
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+        [MaxLength(32)]
+        public string FirstName { get; set; }
+        [MaxLength(32)]
+        public string LastName { get; set; }
+        public IFormFile Avatar { get; set; }
+        [MaxLength(32)]
+        public string PhoneNumber { get; set; }
+        [MaxLength(32)]
+        public string Address { get; set; }
+        public bool Sex { get; set; }
+        [MaxLength(32)]
+        public string CitizenID { get; set; }
     }
 }
