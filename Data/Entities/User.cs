@@ -4,10 +4,11 @@ namespace PBL5BE.API.Data.Entities
 {
     public class User
     {
+
+
         public int ID { get; set; }
         [Required]
-        [MaxLength(32)]
-        public string Username { get; set; }
+        [EmailAddress]
         [MaxLength(64)]
         public string Email { get; set; }
 
