@@ -8,9 +8,17 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PBL5BE.API
 build_property.RootNamespace = PBL5BE.API
+<<<<<<< Updated upstream
 build_property.ProjectDir = C:\Users\TruongVu\Desktop\PBL5BE\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\TruongVu\Desktop\PBL5BE
+=======
+build_property.ProjectDir = d:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = d:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6
+>>>>>>> Stashed changes
 build_property._RazorSourceGeneratorDebug = 
