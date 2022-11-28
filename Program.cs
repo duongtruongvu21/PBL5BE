@@ -68,7 +68,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 Encoding.UTF8.GetBytes(builder.Configuration["TokenKey"]))
         };
     });
-
+ 
     
 var app = builder.Build();
 
