@@ -94,5 +94,25 @@ namespace PBL5BE.API.Services._Order
                 return STTCode.ServerCodeException;
             }
         }
+        public List<OrderDetailGetDTO> GetOrderDetailsByOrderID(int orderID)
+        {
+            if (!_context.Orders.Any(o => o.ID == orderID)) throw new Exception("not found");
+            List<OrderDetail> ods =  _context.OrderDetails.Where(od => od.OrderID == orderID).OrderByDescending(od => od.ID).ToList();
+            List<OrderDetailGetDTO> data = new List<OrderDetailGetDTO>();
+            foreach(OrderDetail od in ods){
+                Product p = _context.Products.FirstOrDefault(p => p.ID == od.ProductID);
+                OrderDetailGetDTO o = new OrderDetailGetDTO{
+                    ID = od.ID,
+                    Description = od.Description,
+                    OrderID = od.OrderID,
+                    PricePerOne = od.PricePerOne,
+                    ProductCount = od.ProductCount,
+                    ProductID = od.ProductID,
+                    ProductName = p.ProductName
+                };
+                data.Add(o);
+            }
+            return data;
+        }
     }
 }

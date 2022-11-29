@@ -104,33 +104,6 @@ namespace PBL5BE.API.Controllers
             };
             return Ok(JsonConvert.SerializeObject(returnData));
         }
-        [HttpGet("GetOrders")]
-        public IActionResult GetOrders(int status = -1, int userID = 0, int recordQuantity = 999) 
-        {
-            var returnData = new ReturnData() {
-                isSuccess = true,
-                Data = new List<object>(_cartService.GetOrders(status, userID, recordQuantity))
-            };
-            return Ok(JsonConvert.SerializeObject(returnData));
-        }
-        [HttpGet("GetOrderDetailsByOrderID")]
-        public IActionResult GetOrderDetailsByOrderID(int id)
-        {
-            try {
-                var returnData = new ReturnData() {
-                    isSuccess = true,
-                    Data = new List<object>(_cartService.GetOrderDetailsByOrderID(id))
-                };
-                return Ok(JsonConvert.SerializeObject(returnData));
-            }
-            catch(Exception){
-                var returnData = new ReturnData() {
-                    isSuccess = false,
-                    errMessage = StatusCodeService.toString(STTCode.IDNotFound)
-                };
-                return Ok(JsonConvert.SerializeObject(returnData));
-            }
-        }
         [HttpPost("OnPayment")]
         //[Authorize]
         public IActionResult OnPayment([FromForm] CartOnPayment c)
