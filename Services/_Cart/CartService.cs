@@ -122,15 +122,16 @@ namespace PBL5BE.API.Services._Cart
             return _context.CartItems.FirstOrDefault(c => c.ID == id);
         }
 
-        public STTCode OnPayment(int userID, List<int> cartItemsID, string address)
+        public STTCode OnPayment(int userID, List<int> cartItemsID, string address, float ShippingFee)
         {
             try{
                 var o = new Order{
                     CreateAt = DateTime.Now,
                     CreateBy = userID,
-                    Status = 1,
+                    Status = 0,
                     Address = address,
-                    NumberOfProducts = cartItemsID.Count()
+                    NumberOfProducts = cartItemsID.Count(),
+                    ShippingFee = ShippingFee
                 };
                 _context.Orders.Add(o);
                 _context.SaveChanges();
@@ -148,10 +149,12 @@ namespace PBL5BE.API.Services._Cart
                         ProductID = c.ProductID
                     };
                     _context.OrderDetails.Add(od);
+                    if (p.Count < c.ProductCount) return STTCode.ProductBuyAmountExcessProductCount;
                     p.Count -= c.ProductCount;
                     p.SoldQuantity += c.ProductCount;
                     _context.Remove(c);
                 }
+                o.Status = 1;
                 _context.SaveChanges();
                 return STTCode.Success;            
             }

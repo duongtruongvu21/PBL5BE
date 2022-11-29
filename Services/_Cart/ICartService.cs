@@ -10,7 +10,7 @@ namespace PBL5BE.API.Services._Cart
         STTCode DeleteCartItemByID(int id);
         List<CartGetDTO> GetCartItemsByUserID(int id);
         Cart GetCartItemByID(int id);
-        STTCode OnPayment(int userID, List<int> cartItemsID, string address);
+        STTCode OnPayment(int userID, List<int> cartItemsID, string address, float ShippingFee);
         List<Order> GetOrders(int status, int userID, int recordQuantity);
         List<OrderDetailGetDTO> GetOrderDetailsByOrderID(int orderID);
     }

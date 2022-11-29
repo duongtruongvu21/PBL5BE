@@ -141,7 +141,7 @@ namespace PBL5BE.API.Controllers
             // var jsonToken = tokenHandler.ReadToken(token);
             // var tokenS = jsonToken as JwtSecurityToken;
             // var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
-            var isSuccess = _cartService.OnPayment(c.userID, c.cartItemsID, c.Address);
+            var isSuccess = _cartService.OnPayment(c.userID, c.cartItemsID, c.Address, c.ShippingFee);
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
