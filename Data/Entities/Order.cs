@@ -14,5 +14,6 @@ namespace PBL5BE.API.Data.Entities
         public DateTime CreateAt { get; set; }
         [ForeignKey("User")]
         public int CreateBy { get; set; }
+        public float ShippingFee { get; set; }
     }
 }

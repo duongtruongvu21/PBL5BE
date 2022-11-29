@@ -28,6 +28,8 @@ namespace PBL5BE.API.Services
                     return "Không thể xoá OrderDetail của một Order đã thanh toán";
                 case STTCode.NoAccess:
                     return "Không có thẩm quyền";
+                case STTCode.ProductBuyAmountExcessProductCount:
+                    return "Số lượng sản phẩm muốn mua vượt quá số lượng sản phẩm còn lại";
                 case STTCode.E1:
                     return "E1";
                 case STTCode.E2:

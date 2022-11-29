@@ -30,6 +30,8 @@ namespace PBL5BE.API.Data.DTO
         public List<int> cartItemsID { get; set; }
         [Required] [StringLength(200)]
         public String Address { get; set; }
+        [Required]
+        public float ShippingFee { get; set; }
     }
     public class CartGetDTO
     {

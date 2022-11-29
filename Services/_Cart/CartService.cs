@@ -82,55 +82,20 @@ namespace PBL5BE.API.Services._Cart
             }
             return data;
         }
-
-        public List<OrderDetailGetDTO> GetOrderDetailsByOrderID(int orderID)
-        {
-            if (!_context.Orders.Any(o => o.ID == orderID)) throw new Exception("not found");
-            List<OrderDetail> ods =  _context.OrderDetails.Where(od => od.OrderID == orderID).OrderByDescending(od => od.ID).ToList();
-            List<OrderDetailGetDTO> data = new List<OrderDetailGetDTO>();
-            foreach(OrderDetail od in ods){
-                Product p = _context.Products.FirstOrDefault(p => p.ID == od.ProductID);
-                OrderDetailGetDTO o = new OrderDetailGetDTO{
-                    ID = od.ID,
-                    Description = od.Description,
-                    OrderID = od.OrderID,
-                    PricePerOne = od.PricePerOne,
-                    ProductCount = od.ProductCount,
-                    ProductID = od.ProductID,
-                    ProductName = p.ProductName
-                };
-                data.Add(o);
-            }
-            return data;
-        }
-
-        public List<Order> GetOrders(int status, int userID, int recordQuantity)
-        {
-            List<Order> orders = new List<Order>();
-            if (status < 0){
-                orders = _context.Orders.Where(o => o.Status != 0).OrderByDescending(o => o.ID).Take(recordQuantity).ToList();
-            }
-            else {
-                orders = _context.Orders.Where(o => o.Status == status).OrderByDescending(o => o.ID).Take(recordQuantity).ToList();
-            }
-            if (userID > 0){
-                orders = orders.FindAll(o => o.CreateBy == userID);
-            }
-            return orders;
-        }
         public Cart GetCartItemByID(int id){
             return _context.CartItems.FirstOrDefault(c => c.ID == id);
         }
 
-        public STTCode OnPayment(int userID, List<int> cartItemsID, string address)
+        public STTCode OnPayment(int userID, List<int> cartItemsID, string address, float ShippingFee)
         {
             try{
                 var o = new Order{
                     CreateAt = DateTime.Now,
                     CreateBy = userID,
-                    Status = 1,
+                    Status = 0,
                     Address = address,
-                    NumberOfProducts = cartItemsID.Count()
+                    NumberOfProducts = cartItemsID.Count(),
+                    ShippingFee = ShippingFee
                 };
                 _context.Orders.Add(o);
                 _context.SaveChanges();
@@ -148,10 +113,12 @@ namespace PBL5BE.API.Services._Cart
                         ProductID = c.ProductID
                     };
                     _context.OrderDetails.Add(od);
+                    if (p.Count < c.ProductCount) return STTCode.ProductBuyAmountExcessProductCount;
                     p.Count -= c.ProductCount;
                     p.SoldQuantity += c.ProductCount;
                     _context.Remove(c);
                 }
+                o.Status = 1;
                 _context.SaveChanges();
                 return STTCode.Success;            
             }
