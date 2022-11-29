@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBL5BE.API.Data;
 
@@ -10,41 +11,15 @@ using PBL5BE.API.Data;
 namespace PBL5BE.API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221111123109_edit-user-table")]
+    partial class editusertable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("PBL5BE.API.Data.Entities.Cart", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("varchar(1000)");
-
-                    b.Property<float>("PricePerOne")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("CartItems");
-                });
 
             modelBuilder.Entity("PBL5BE.API.Data.Entities.Category", b =>
                 {
@@ -60,70 +35,9 @@ namespace PBL5BE.API.Data.Migrations
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint unsigned");
 
-                    b.Property<string>("imgUrl")
-                        .HasMaxLength(1000)
-                        .HasColumnType("varchar(1000)");
-
                     b.HasKey("ID");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("PBL5BE.API.Data.Entities.Order", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("CreateBy")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfProducts")
-                        .HasMaxLength(255)
-                        .HasColumnType("int");
-
-                    b.Property<float>("ShippingFee")
-                        .HasColumnType("float");
-
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint unsigned");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("PBL5BE.API.Data.Entities.OrderDetail", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("varchar(1000)");
-
-                    b.Property<int>("OrderID")
-                        .HasColumnType("int");
-
-                    b.Property<float>("PricePerOne")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("PBL5BE.API.Data.Entities.Product", b =>
@@ -148,12 +62,6 @@ namespace PBL5BE.API.Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("varchar(1000)");
 
-                    b.Property<string>("HtmlDescription")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("MarkdownDescription")
-                        .HasColumnType("longtext");
-
                     b.Property<int>("NumberOfImgs")
                         .HasColumnType("int");
 
@@ -165,11 +73,11 @@ namespace PBL5BE.API.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("SoldQuantity")
-                        .HasColumnType("int");
-
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint unsigned");
+
+                    b.Property<bool>("isReviewed")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("ID");
 
