@@ -90,3 +90,5 @@ D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\PBL5BE.
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\ref\PBL5BE.API.dll
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\Sentry.Attributes.cs
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Sentry.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Sentry.AspNetCore.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Sentry.Extensions.Logging.dll

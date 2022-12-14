@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[3.24.0, )"
             },
+            "Sentry.AspNetCore": {
+              "target": "Package",
+              "version": "[3.24.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
