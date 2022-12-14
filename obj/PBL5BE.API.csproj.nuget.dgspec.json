@@ -20,6 +20,7 @@
           "net6.0"
         ],
         "sources": {
+          "https://66ed-116-98-118-179.ap.ngrok.io//repository/nuget-hosted/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

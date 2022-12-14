@@ -2085,11 +2085,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
+      "projectUniqueName": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
       "projectName": "PBL5BE.API",
-      "projectPath": "d:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
+      "projectPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
       "packagesPath": "C:\\Users\\OS\\.nuget\\packages\\",
-      "outputPath": "d:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\obj\\",
+      "outputPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\OS\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2098,6 +2098,7 @@
         "net6.0"
       ],
       "sources": {
+        "https://66ed-116-98-118-179.ap.ngrok.io//repository/nuget-hosted/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
