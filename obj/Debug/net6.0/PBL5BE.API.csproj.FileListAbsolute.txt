@@ -88,3 +88,5 @@ D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\refint\
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\PBL5BE.API.pdb
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\PBL5BE.API.genruntimeconfig.cache
 D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\ref\PBL5BE.API.dll
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\obj\Debug\net6.0\Sentry.Attributes.cs
+D:\Code\111-Source code\Microsoft VS Code saves\C#\PBL6\bin\Debug\net6.0\Sentry.dll

@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore.Design": "6.0.9",
           "Newtonsoft.Json": "13.0.1",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.2",
+          "Sentry": "3.24.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "System.IdentityModel.Tokens.Jwt": "6.24.0"
         },
@@ -249,6 +250,14 @@
           "lib/net6.0/Pomelo.EntityFrameworkCore.MySql.dll": {
             "assemblyVersion": "6.0.2.0",
             "fileVersion": "6.0.2.0"
+          }
+        }
+      },
+      "Sentry/3.24.0": {
+        "runtime": {
+          "lib/net6.0/Sentry.dll": {
+            "assemblyVersion": "3.24.0.0",
+            "fileVersion": "3.24.0.0"
           }
         }
       },
@@ -545,6 +554,13 @@
       "sha512": "sha512-KvlZ800CnEuEGnxj5OT1fCKGjQXxW5kpPlCP91JqBYG+2Z3927eqXmlX6LLKUt4swqE8ZsEQ+Zkpab8bqstf4g==",
       "path": "pomelo.entityframeworkcore.mysql/6.0.2",
       "hashPath": "pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512"
+    },
+    "Sentry/3.24.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HlsXd4DweIsbNvyhBPSdNBvz7bDbEIHs13WUwfQTuYL9kMhJyGn9pDy19S8W6vtwuJcZ1fInc1Ma/AyEK32S/A==",
+      "path": "sentry/3.24.0",
+      "hashPath": "sentry.3.24.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.2.3": {
       "type": "package",

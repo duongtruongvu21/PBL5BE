@@ -11,6 +11,20 @@ using PBL5BE.API.Services._Product;
 using PBL5BE.API.Services._Order;
 using PBL5BE.API.Services._OrderDetail;
 using PBL5BE.API.Services._Cart;
+using Sentry;
+
+using (SentrySdk.Init(o =>
+{
+    // Tells which project in Sentry to send events to:
+    o.Dsn = "https://8f840d454eb84bc29709b86bbfcf9121@o4504276759216128.ingest.sentry.io/4504276760592384";
+    // When configuring for the first time, to see what the SDK is doing:
+    o.Debug = true;
+    // Set traces_sample_rate to 1.0 to capture 100% of transactions for performance monitoring.
+    // We recommend adjusting this value in production.
+    o.TracesSampleRate = 1.0;
+    // Enable Global Mode if running in a client app
+    o.IsGlobalModeEnabled = true;
+}));
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
