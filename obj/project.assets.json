@@ -174,6 +174,23 @@
           }
         }
       },
+      "Microsoft.Extensions.Configuration/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -186,6 +203,22 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
             "related": ".xml"
           }
         }
@@ -226,6 +259,25 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Microsoft.Extensions.Http/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Http.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -262,6 +314,29 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Microsoft.Extensions.Logging.Configuration/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "6.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "6.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options": "6.0.0",
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Configuration.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Configuration.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Options/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -275,6 +350,26 @@
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.Extensions.Options.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Extensions.Options.ConfigurationExtensions/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "6.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {
             "related": ".xml"
           }
         }
@@ -468,6 +563,59 @@
         },
         "runtime": {
           "lib/net6.0/Pomelo.EntityFrameworkCore.MySql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Sentry/3.24.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Sentry.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Sentry.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Sentry.props": {}
+        }
+      },
+      "Sentry.AspNetCore/3.24.0": {
+        "type": "package",
+        "dependencies": {
+          "Sentry.Extensions.Logging": "3.24.0"
+        },
+        "compile": {
+          "lib/net6.0/Sentry.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Sentry.AspNetCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Sentry.Extensions.Logging/3.24.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Http": "6.0.0",
+          "Microsoft.Extensions.Logging.Configuration": "6.0.0",
+          "Sentry": "3.24.0"
+        },
+        "compile": {
+          "lib/net6.0/Sentry.Extensions.Logging.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Sentry.Extensions.Logging.dll": {
             "related": ".xml"
           }
         }
@@ -900,6 +1048,25 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.Configuration/6.0.0": {
+      "sha512": "tq2wXyh3fL17EMF2bXgRhU7JrbO3on93MRKYxzz4JzzvuGSA1l0W3GI9/tl8EO89TH+KWEymP7bcFway6z9fXg==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Configuration.dll",
+        "lib/net461/Microsoft.Extensions.Configuration.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+        "microsoft.extensions.configuration.6.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
       "sha512": "qWzV9o+ZRWq+pGm+1dF+R7qTgTYoXvbyowRoBxQJGfqTpqDun2eteerjRQhq5PQ/14S+lqto3Ft4gYaRyl4rdQ==",
       "type": "package",
@@ -916,6 +1083,25 @@
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
         "microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
         "microsoft.extensions.configuration.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.Binder/6.0.0": {
+      "sha512": "b3ErKzND8LIC7o08QAVlKfaEIYEvLJbtmVbFZVBRXeu9YkKfSSzLZfR1SUfQPBIy9mKLhEtJgGYImkcMNaKE0A==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.binder/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/net461/Microsoft.Extensions.Configuration.Binder.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
+        "microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.binder.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -966,6 +1152,25 @@
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Http/6.0.0": {
+      "sha512": "15+pa2G0bAMHbHewaQIdr/y6ag2H3yh4rd9hTXavtWDzQBkvpe2RMqFg8BxDpcQWssmjmBApGPcw93QRz6YcMg==",
+      "type": "package",
+      "path": "microsoft.extensions.http/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Http.dll",
+        "lib/net461/Microsoft.Extensions.Http.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+        "microsoft.extensions.http.6.0.0.nupkg.sha512",
+        "microsoft.extensions.http.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -1042,6 +1247,25 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Microsoft.Extensions.Logging.Configuration/6.0.0": {
+      "sha512": "ZDskjagmBAbv+K8rYW9VhjPplhbOE63xUD0DiuydZJwt15dRyoqicYklLd86zzeintUc7AptDkHn+YhhYkYo8A==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.configuration/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Logging.Configuration.dll",
+        "lib/net461/Microsoft.Extensions.Logging.Configuration.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Configuration.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Configuration.xml",
+        "microsoft.extensions.logging.configuration.6.0.0.nupkg.sha512",
+        "microsoft.extensions.logging.configuration.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
     "Microsoft.Extensions.Options/6.0.0": {
       "sha512": "dzXN0+V1AyjOe2xcJ86Qbo233KHuLEY0njf/P2Kw8SfJU+d45HNS2ctJdnEnrWbM9Ye2eFgaC5Mj9otRMU6IsQ==",
       "type": "package",
@@ -1060,6 +1284,25 @@
         "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
         "microsoft.extensions.options.6.0.0.nupkg.sha512",
         "microsoft.extensions.options.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Options.ConfigurationExtensions/6.0.0": {
+      "sha512": "bXWINbTn0vC0FYc9GaQTISbxhQLAMrvtbuvD9N6JelEaIS/Pr62wUCinrq5bf1WRBGczt1v4wDhxFtVFNcMdUQ==",
+      "type": "package",
+      "path": "microsoft.extensions.options.configurationextensions/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
+        "lib/net461/Microsoft.Extensions.Options.ConfigurationExtensions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.ConfigurationExtensions.xml",
+        "microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
+        "microsoft.extensions.options.configurationextensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -1325,6 +1568,81 @@
         "lib/net6.0/Pomelo.EntityFrameworkCore.MySql.xml",
         "pomelo.entityframeworkcore.mysql.6.0.2.nupkg.sha512",
         "pomelo.entityframeworkcore.mysql.nuspec"
+      ]
+    },
+    "Sentry/3.24.0": {
+      "sha512": "HlsXd4DweIsbNvyhBPSdNBvz7bDbEIHs13WUwfQTuYL9kMhJyGn9pDy19S8W6vtwuJcZ1fInc1Ma/AyEK32S/A==",
+      "type": "package",
+      "path": "sentry/3.24.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Sentry.props",
+        "buildTransitive/Sentry.props",
+        "lib/net461/Sentry.dll",
+        "lib/net461/Sentry.xml",
+        "lib/net5.0/Sentry.dll",
+        "lib/net5.0/Sentry.xml",
+        "lib/net6.0-android31.0/Sentry.dll",
+        "lib/net6.0-android31.0/Sentry.xml",
+        "lib/net6.0-ios16.0/Sentry.dll",
+        "lib/net6.0-ios16.0/Sentry.xml",
+        "lib/net6.0-maccatalyst15.4/Sentry.dll",
+        "lib/net6.0-maccatalyst15.4/Sentry.xml",
+        "lib/net6.0/Sentry.dll",
+        "lib/net6.0/Sentry.xml",
+        "lib/netcoreapp3.0/Sentry.dll",
+        "lib/netcoreapp3.0/Sentry.xml",
+        "lib/netstandard2.0/Sentry.dll",
+        "lib/netstandard2.0/Sentry.xml",
+        "lib/netstandard2.1/Sentry.dll",
+        "lib/netstandard2.1/Sentry.xml",
+        "sentry-nuget.png",
+        "sentry.3.24.0.nupkg.sha512",
+        "sentry.nuspec"
+      ]
+    },
+    "Sentry.AspNetCore/3.24.0": {
+      "sha512": "iVCnKUmqZMzl8XxIAPsmTsJjRBFoNqNs8tDSuoMttLAIBd4Bzw5m7awe/fsY7bwcRFC56qwihbAQKkeNnM3Ehg==",
+      "type": "package",
+      "path": "sentry.aspnetcore/3.24.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net5.0/Sentry.AspNetCore.dll",
+        "lib/net5.0/Sentry.AspNetCore.xml",
+        "lib/net6.0/Sentry.AspNetCore.dll",
+        "lib/net6.0/Sentry.AspNetCore.xml",
+        "lib/netcoreapp3.0/Sentry.AspNetCore.dll",
+        "lib/netcoreapp3.0/Sentry.AspNetCore.xml",
+        "lib/netstandard2.0/Sentry.AspNetCore.dll",
+        "lib/netstandard2.0/Sentry.AspNetCore.xml",
+        "sentry-nuget.png",
+        "sentry.aspnetcore.3.24.0.nupkg.sha512",
+        "sentry.aspnetcore.nuspec"
+      ]
+    },
+    "Sentry.Extensions.Logging/3.24.0": {
+      "sha512": "MfXN8c7ut93lzLJNV6GrkmNY/r6iaQg4VxaHPLndsUTa3t0qGBsIFADGA3CYYRap7P/FKpbHHKF2zqg/N9+2OQ==",
+      "type": "package",
+      "path": "sentry.extensions.logging/3.24.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net5.0/Sentry.Extensions.Logging.dll",
+        "lib/net5.0/Sentry.Extensions.Logging.xml",
+        "lib/net6.0/Sentry.Extensions.Logging.dll",
+        "lib/net6.0/Sentry.Extensions.Logging.xml",
+        "lib/netcoreapp3.0/Sentry.Extensions.Logging.dll",
+        "lib/netcoreapp3.0/Sentry.Extensions.Logging.xml",
+        "lib/netstandard2.0/Sentry.Extensions.Logging.dll",
+        "lib/netstandard2.0/Sentry.Extensions.Logging.xml",
+        "sentry-nuget.png",
+        "sentry.extensions.logging.3.24.0.nupkg.sha512",
+        "sentry.extensions.logging.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/6.2.3": {
@@ -1755,31 +2073,32 @@
       "Microsoft.EntityFrameworkCore.Design >= 6.0.9",
       "Newtonsoft.Json >= 13.0.1",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.2",
+      "Sentry >= 3.24.0",
+      "Sentry.AspNetCore >= 3.24.0",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "System.IdentityModel.Tokens.Jwt >= 6.24.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vu\\.nuget\\packages\\": {}
+    "C:\\Users\\OS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj",
+      "projectUniqueName": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
       "projectName": "PBL5BE.API",
-      "projectPath": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj",
-      "packagesPath": "C:\\Users\\Vu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\obj\\",
+      "projectPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
+      "packagesPath": "C:\\Users\\OS\\.nuget\\packages\\",
+      "outputPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\OS\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://66ed-116-98-118-179.ap.ngrok.io//repository/nuget-hosted/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1819,6 +2138,14 @@
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",
             "version": "[6.0.2, )"
+          },
+          "Sentry": {
+            "target": "Package",
+            "version": "[3.24.0, )"
+          },
+          "Sentry.AspNetCore": {
+            "target": "Package",
+            "version": "[3.24.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

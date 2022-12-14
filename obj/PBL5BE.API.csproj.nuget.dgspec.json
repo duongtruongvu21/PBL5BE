@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj": {}
+    "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj": {
+    "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj",
+        "projectUniqueName": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
         "projectName": "PBL5BE.API",
-        "projectPath": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj",
-        "packagesPath": "C:\\Users\\Vu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\obj\\",
+        "projectPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
+        "packagesPath": "C:\\Users\\OS\\.nuget\\packages\\",
+        "outputPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\OS\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://66ed-116-98-118-179.ap.ngrok.io//repository/nuget-hosted/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -61,6 +60,14 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[6.0.2, )"
+            },
+            "Sentry": {
+              "target": "Package",
+              "version": "[3.24.0, )"
+            },
+            "Sentry.AspNetCore": {
+              "target": "Package",
+              "version": "[3.24.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

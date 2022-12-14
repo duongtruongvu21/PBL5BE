@@ -12,6 +12,7 @@ namespace PBL5BE.API.Data.Enums
             Success = 1,
             OrderIsPaid,
             NoAccess = -9,
+            ProductBuyAmountExcessProductCount,
             
             E1 = 5,
             E2 = 6,

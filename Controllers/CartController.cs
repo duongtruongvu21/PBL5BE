@@ -104,33 +104,6 @@ namespace PBL5BE.API.Controllers
             };
             return Ok(JsonConvert.SerializeObject(returnData));
         }
-        [HttpGet("GetOrders")]
-        public IActionResult GetOrders(int status = -1, int userID = 0, int recordQuantity = 999) 
-        {
-            var returnData = new ReturnData() {
-                isSuccess = true,
-                Data = new List<object>(_cartService.GetOrders(status, userID, recordQuantity))
-            };
-            return Ok(JsonConvert.SerializeObject(returnData));
-        }
-        [HttpGet("GetOrderDetailsByOrderID")]
-        public IActionResult GetOrderDetailsByOrderID(int id)
-        {
-            try {
-                var returnData = new ReturnData() {
-                    isSuccess = true,
-                    Data = new List<object>(_cartService.GetOrderDetailsByOrderID(id))
-                };
-                return Ok(JsonConvert.SerializeObject(returnData));
-            }
-            catch(Exception){
-                var returnData = new ReturnData() {
-                    isSuccess = false,
-                    errMessage = StatusCodeService.toString(STTCode.IDNotFound)
-                };
-                return Ok(JsonConvert.SerializeObject(returnData));
-            }
-        }
         [HttpPost("OnPayment")]
         //[Authorize]
         public IActionResult OnPayment([FromForm] CartOnPayment c)
@@ -141,7 +114,7 @@ namespace PBL5BE.API.Controllers
             // var jsonToken = tokenHandler.ReadToken(token);
             // var tokenS = jsonToken as JwtSecurityToken;
             // var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
-            var isSuccess = _cartService.OnPayment(c.userID, c.cartItemsID, c.Address);
+            var isSuccess = _cartService.OnPayment(c.userID, c.cartItemsID, c.Address, c.ShippingFee);
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
