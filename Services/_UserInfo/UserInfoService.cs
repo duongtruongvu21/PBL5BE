@@ -26,13 +26,13 @@ namespace PBL5BE.API.Services._UserInfo
             var newUserInfo = new UserInfo()
             {
                 UserID = user.ID,
-                FirstName = userRegister == null ? "Unknow" : userRegister.FirstName,
-                LastName = userRegister == null ? "Unknow" : userRegister.LastName,
-                PhoneNumber = userRegister == null ? "Unknow" : userRegister.PhoneNumber,
+                FirstName = userRegister == null ? "Unknow" : userRegister.FirstName == null ? "Unknow" : userRegister.FirstName,
+                LastName = userRegister == null ? "Unknow" : userRegister.LastName == null ? "Unknow" : userRegister.LastName,
+                PhoneNumber = userRegister == null ? "Unknow" : userRegister.PhoneNumber == null ? "Unknow" : userRegister.PhoneNumber,
                 Sex = userRegister == null ? false : userRegister.Sex,
                 Status = 0,
-                Address = userRegister == null ? "Unknow" : userRegister.Address,
-                CitizenID = "Unknow",
+                Address = userRegister == null ? "Unknow" : userRegister.Address == null ? "Unknow" : userRegister.Address,
+                CitizenID = userRegister == null ? "Unknow" : userRegister.CitizenID,
                 Role = ALLCODE.Role_User.Key,
                 CreateAt = DateTime.Now,
             };
@@ -49,7 +49,7 @@ namespace PBL5BE.API.Services._UserInfo
                 existUserInfo.FirstName = uiEdit.FirstName;
                 existUserInfo.LastName = uiEdit.LastName;
                 Uploads.UpAvatar(uiEdit.Avatar, GetAvatarPath(), uiEdit.UserID);
-                existUserInfo.Role = uiEdit.Role;
+                // existUserInfo.Role = uiEdit.Role;
                 existUserInfo.PhoneNumber = uiEdit.PhoneNumber;
                 existUserInfo.Sex = uiEdit.Sex;
                 existUserInfo.Status = 1;

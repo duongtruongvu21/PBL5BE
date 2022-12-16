@@ -5,7 +5,6 @@ namespace PBL5BE.API.Data.DTO
     public class UserLogin
     {
         [Required]
-        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
@@ -14,7 +13,6 @@ namespace PBL5BE.API.Data.DTO
     public class UserRegister
     {
         [Required]
-        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
@@ -30,5 +28,11 @@ namespace PBL5BE.API.Data.DTO
         public bool Sex { get; set; }
         [MaxLength(32)]
         public string CitizenID { get; set; }
+    }
+
+    public class UserChangePassword
+    {
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
     }
 }

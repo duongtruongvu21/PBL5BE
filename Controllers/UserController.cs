@@ -80,11 +80,11 @@ namespace PBL5BE.API.Controllers
         [HttpPost("UserLogin")]
         public IActionResult UserLogin([FromBody] UserLogin userLogin)
         {
+            var returnData = new ReturnData();
+
             var isSuccess = _userService.LoginUser(userLogin);
             User user = null;
             UserInfo userinfo = null;
-
-            var returnData = new ReturnData();
             if (isSuccess == STTCode.Success)
             {
                 returnData.isSuccess = true;
@@ -121,7 +121,7 @@ namespace PBL5BE.API.Controllers
 
         [HttpPut("ChangePassword")]
         [Authorize] // có token mới gọi được api này
-        public IActionResult ChangePassword(string oldPass, string newPass)
+        public IActionResult ChangePassword(UserChangePassword ucp)
         {
             string token = Request.Headers["Authorization"];
             // token nhận về có dạng "bearer " + token -> xoá 7 kí tự đầu
@@ -135,7 +135,7 @@ namespace PBL5BE.API.Controllers
                 var userid = tokenS.Claims.First(claim => claim.Type == "userid").Value;
                 var email = tokenS.Claims.First(claim => claim.Type == "email").Value;
 
-                STTCode code = _userService.ChangePassword(email, oldPass, newPass);
+                STTCode code = _userService.ChangePassword(email, ucp.OldPassword, ucp.NewPassword);
 
                 var returnData = new ReturnData()
                 {

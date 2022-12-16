@@ -11,6 +11,7 @@ using PBL5BE.API.Services._Product;
 using PBL5BE.API.Services._Order;
 using PBL5BE.API.Services._OrderDetail;
 using PBL5BE.API.Services._Cart;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -18,7 +19,7 @@ var services = builder.Services;
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 // Add services to the container.
-    
+
 //builder.WebHost.ConfigureKestrel(options => options.Listen(System.Net.IPAddress.Parse("192.168.1.24"), 7149));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -28,11 +29,39 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "_myCORS",
-                      policy  =>
+                      policy =>
                       {
                           policy.WithOrigins("*")
                           .AllowAnyMethod().AllowAnyHeader();
                       });
+});
+
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "PBL6", Version = "v1" });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
 });
 
 var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
@@ -69,7 +98,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-    
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

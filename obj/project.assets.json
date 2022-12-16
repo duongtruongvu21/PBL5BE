@@ -1760,24 +1760,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\OS\\.nuget\\packages\\": {}
+    "C:\\Users\\Vu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
+      "projectUniqueName": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj",
       "projectName": "PBL5BE.API",
-      "projectPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\PBL5BE.API.csproj",
-      "packagesPath": "C:\\Users\\OS\\.nuget\\packages\\",
-      "outputPath": "D:\\Code\\111-Source code\\Microsoft VS Code saves\\C#\\PBL6\\obj\\",
+      "projectPath": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\PBL5BE.API.csproj",
+      "packagesPath": "C:\\Users\\Vu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vu\\Desktop\\PBL5\\PBL5BE.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\OS\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://116.105.210.111:8080/repository/nuget-hosted/index.json": {},
+        "http://itdut-s7.ddns.net:8081/repository/nuget-hosted/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1846,8 +1850,22 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://itdut-s7.ddns.net:8081/repository/nuget-hosted/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://116.105.210.111:8080/repository/nuget-hosted/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }
