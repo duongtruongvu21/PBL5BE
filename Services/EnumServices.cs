@@ -4,9 +4,9 @@ namespace PBL5BE.API.Services
 {
     public class StatusCodeService
     {
-        public static string toString(STTCode statusCode) 
+        public static string toString(STTCode statusCode)
         {
-            switch(statusCode)
+            switch (statusCode)
             {
                 case STTCode.Existed:
                     return "Đã tồn tại";
@@ -30,18 +30,9 @@ namespace PBL5BE.API.Services
                     return "Không có thẩm quyền";
                 case STTCode.ProductBuyAmountExcessProductCount:
                     return "Số lượng sản phẩm muốn mua vượt quá số lượng sản phẩm còn lại";
-                case STTCode.E1:
-                    return "E1";
-                case STTCode.E2:
-                    return "E2";
-                case STTCode.E3:
-                    return "E3";
-                case STTCode.E4:
-                    return "E4";
-                case STTCode.E5:
-                    return "E5";
-                case STTCode.E6:
-                    return "E6";
+
+                case STTCode.NotEmail:
+                    return "Email không hợp lệ!!";
                 default:
                     return "Lỗi, báo cho BackEnd";
             }
