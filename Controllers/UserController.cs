@@ -137,13 +137,18 @@ namespace PBL5BE.API.Controllers
 
                 STTCode code = _userService.ChangePassword(email, ucp.OldPassword, ucp.NewPassword);
 
-                var returnData = new ReturnData()
+                var returnData = new ReturnData();
+
+                if (code == STTCode.Success)
                 {
-                    isSuccess = true,
-                    Data = new List<object>(){
-                        code
-                    }
-                };
+                    returnData.isSuccess = true;
+                }
+                else
+                {
+                    returnData.isSuccess = false;
+                    returnData.errMessage = StatusCodeService.toString(code);
+                }
+
                 return Ok(JsonConvert.SerializeObject(returnData));
             }
             catch (Exception)
