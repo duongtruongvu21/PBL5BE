@@ -23,9 +23,7 @@ namespace PBL5BE.API.Controllers
         [HttpPut("EditUserInfo")]
         public async Task<IActionResult> EditUserInfo([FromForm] UserInfoEditDTO userInfoDTO)
         {
-            var existUI = _userInfoService.GetUserInfoByID(userInfoDTO.UserID);
-
-            var isSuccess = await _userInfoService.EditUserInfo(userInfoDTO, existUI);
+            var isSuccess = await _userInfoService.EditUserInfo(userInfoDTO);
 
 
             var returnData = new ReturnData();
@@ -59,33 +57,6 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
 
-        [HttpGet("TestToken")] // lấy id và email từ token
-        [Authorize] // có token mới gọi được api này
-        public IActionResult TestToken()
-        {
-            string token = Request.Headers["Authorization"];
-            // token nhận về có dạng "bearer " + token -> xoá 7 kí tự đầu
-            token = token.Substring(7);
-            try
-            {
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var jsonToken = tokenHandler.ReadToken(token);
-                var tokenS = jsonToken as JwtSecurityToken;
-
-                var userid = tokenS.Claims.First(claim => claim.Type == "userid").Value;
-                var email = tokenS.Claims.First(claim => claim.Type == "email").Value;
-
-                return Ok($"userID: {userid}, Email: {email}");
-            }
-            catch (Exception)
-            {
-                return Ok($"fails token: {token}");
-            }
-        }
-
-
-
-
         [HttpGet("GetUserInfoByID/{id}")]
         public IActionResult GetUserInfoByID(int id)
         {
@@ -100,6 +71,111 @@ namespace PBL5BE.API.Controllers
             };
 
             return Ok(JsonConvert.SerializeObject(returnData));
+        }
+
+        [HttpPut("ChangeRole")]
+        [Authorize] // có token mới gọi được api này
+        public IActionResult ChangeRole([FromBody] ChangeRoleDTO change)
+        {
+            string token = Request.Headers["Authorization"];
+            token = token.Substring(7);
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jsonToken = tokenHandler.ReadToken(token);
+                var tokenS = jsonToken as JwtSecurityToken;
+
+                var userid = tokenS.Claims.First(claim => claim.Type == "userid").Value;
+
+                bool isAdmin = _userInfoService.GetUserInfoByID(Int32.Parse(userid)).Role == ALLCODE.Role_Admin.Key;
+
+                if (isAdmin)
+                {
+                    STTCode code = _userInfoService.ChangeRole(change.UserID, change.Role);
+
+                    var returnData = new ReturnData();
+
+                    if (code == STTCode.Success)
+                    {
+                        returnData.isSuccess = true;
+                    }
+                    else
+                    {
+                        returnData.isSuccess = false;
+                        returnData.errMessage = StatusCodeService.toString(code);
+                    }
+
+                    return Ok(JsonConvert.SerializeObject(returnData));
+                }
+                else
+                {
+                    var returnData = new ReturnData();
+                    returnData.isSuccess = false;
+                    returnData.errMessage = StatusCodeService.toString(STTCode.NotAdmin);
+                    return Ok(JsonConvert.SerializeObject(returnData));
+                }
+            }
+            catch (Exception)
+            {
+                var returnData = new ReturnData()
+                {
+                    isSuccess = false
+                };
+                return Ok(JsonConvert.SerializeObject(returnData));
+            }
+        }
+
+
+        [HttpPut("ChangeStatus")]
+        [Authorize] // có token mới gọi được api này
+        public IActionResult ChangeStatus([FromBody] ChangeSTTDTO change)
+        {
+            string token = Request.Headers["Authorization"];
+            token = token.Substring(7);
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jsonToken = tokenHandler.ReadToken(token);
+                var tokenS = jsonToken as JwtSecurityToken;
+
+                var userid = tokenS.Claims.First(claim => claim.Type == "userid").Value;
+
+                bool isAdmin = _userInfoService.GetUserInfoByID(Int32.Parse(userid)).Role == ALLCODE.Role_Admin.Key;
+
+                if (isAdmin)
+                {
+                    STTCode code = _userInfoService.ChangeStatus(change.UserID, change.Status);
+
+                    var returnData = new ReturnData();
+
+                    if (code == STTCode.Success)
+                    {
+                        returnData.isSuccess = true;
+                    }
+                    else
+                    {
+                        returnData.isSuccess = false;
+                        returnData.errMessage = StatusCodeService.toString(code);
+                    }
+
+                    return Ok(JsonConvert.SerializeObject(returnData));
+                }
+                else
+                {
+                    var returnData = new ReturnData();
+                    returnData.isSuccess = false;
+                    returnData.errMessage = StatusCodeService.toString(STTCode.NotAdmin);
+                    return Ok(JsonConvert.SerializeObject(returnData));
+                }
+            }
+            catch (Exception)
+            {
+                var returnData = new ReturnData()
+                {
+                    isSuccess = false
+                };
+                return Ok(JsonConvert.SerializeObject(returnData));
+            }
         }
     }
 }

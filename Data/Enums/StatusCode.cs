@@ -14,5 +14,6 @@ namespace PBL5BE.API.Data.Enums
         NoAccess = -9,
         ProductBuyAmountExcessProductCount,
         NotEmail,
+        NotAdmin,
     }
 }

@@ -83,20 +83,27 @@ namespace PBL5BE.API.Controllers
             var returnData = new ReturnData();
 
             var isSuccess = _userService.LoginUser(userLogin);
-            User user = null;
-            UserInfo userinfo = null;
             if (isSuccess == STTCode.Success)
             {
-                returnData.isSuccess = true;
-                user = _userService.GetUserByEmail(userLogin.Email);
-                userinfo = _userInfoService.GetUserInfoByID(user.ID);
-                var token = _tokenService.CreateToken(user.ID, user.Email);
+                User user = _userService.GetUserByEmail(userLogin.Email);
+                UserInfoDTO userinfo = _userInfoService.GetUserInfoByID(user.ID);
 
-                returnData.Data = new List<object>() {
+                if (userinfo.Status == 0)
+                {
+                    returnData.isSuccess = false;
+                    returnData.errMessage = "Tài khoản này đang bị chặn!!";
+                }
+                else
+                {
+                    returnData.isSuccess = true;
+                    var token = _tokenService.CreateToken(user.ID, user.Email);
+
+                    returnData.Data = new List<object>() {
                     token,
                     userinfo,
                     _userService.GetAccountVerificationCode(user.ID),
                 };
+                }
             }
             else
             {
