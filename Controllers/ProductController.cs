@@ -8,6 +8,7 @@ using PBL5BE.API.Data.Entities;
 using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._Category;
+using PBL5BE.API.Services._Product;
 
 namespace PBL5BE.API.Controllers
 {
@@ -49,7 +50,7 @@ namespace PBL5BE.API.Controllers
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         [HttpPut("UpdateProduct")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> UpdateProduct([FromForm] ProductUpdateDTO newProduct)
         {
             var isSuccess = await _productService.UpdateProduct(newProduct);
