@@ -19,6 +19,7 @@ namespace PBL5BE.API.Services._Cart
                 if (!_context.Users.Any(u => u.ID == c.UserID)) return STTCode.ForeignKeyIDNotFound;
                 var p = _context.Products.FirstOrDefault(p => p.ID == c.ProductID);
                 if (p == null) return STTCode.ForeignKeyIDNotFound;
+                if (p.Count < c.ProductCount) return STTCode.ProductBuyAmountExcessProductCount;
                 var newC = new Cart{
                     UserID = c.UserID,
                     Description = c.Description,
@@ -71,7 +72,7 @@ namespace PBL5BE.API.Services._Cart
                 CartGetDTO cgd = new CartGetDTO{
                     Description = c.Description,
                     ID = c.ID,
-                    PricePerOne = c.PricePerOne,
+                    PricePerOne = p.PricePerOne,
                     ProductCount = c.ProductCount,
                     ProductID = c.ProductID,
                     UserID = c.UserID,
@@ -113,8 +114,8 @@ namespace PBL5BE.API.Services._Cart
                         ProductID = c.ProductID
                     };
                     _context.OrderDetails.Add(od);
-                    if (p.Count < c.ProductCount) return STTCode.ProductBuyAmountExcessProductCount;
                     p.Count -= c.ProductCount;
+                    if (p.Count < 0) return STTCode.ProductBuyAmountExcessProductCount;
                     p.SoldQuantity += c.ProductCount;
                     _context.Remove(c);
                 }
