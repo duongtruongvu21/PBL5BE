@@ -87,6 +87,13 @@ namespace PBL5BE.API.Services._Order
                 var currentOrder = _context.Orders.FirstOrDefault(o => o.ID == order.ID);
                 if (currentOrder == null) return STTCode.IDNotFound;
                 currentOrder.Status = order.Status;
+                if (order.Status == 6){
+                    List<OrderDetail> od_list = _context.OrderDetails.Where(o => o.OrderID == currentOrder.ID).ToList();
+                    foreach(OrderDetail od in od_list){
+                        Product p = _context.Products.FirstOrDefault(p => p.ID == od.ProductID);
+                        p.Count += od.ProductCount;
+                    }
+                }
                 _context.SaveChanges();
                 return STTCode.Success;
             }
