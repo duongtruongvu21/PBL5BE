@@ -15,7 +15,7 @@ namespace PBL5BE.API.Services
                 case STTCode.IDNotFound:
                     return "Không tìm thấy ID";
                 case STTCode.IncorrectPassword:
-                    return "Mật khẩu không chính xác";
+                    return "Mật khẩu hiện tại không chính xác";
                 case STTCode.ServerCodeException:
                     return "Báo BackEnd để sửa";
                 case STTCode.Success:
@@ -30,9 +30,10 @@ namespace PBL5BE.API.Services
                     return "Không có thẩm quyền";
                 case STTCode.ProductBuyAmountExcessProductCount:
                     return "Số lượng sản phẩm muốn mua vượt quá số lượng sản phẩm còn lại";
-
                 case STTCode.NotEmail:
                     return "Email không hợp lệ!!";
+                case STTCode.NotAdmin:
+                    return "Chỉ có Admin mới có quyền truy cập này!!";
                 default:
                     return "Lỗi, báo cho BackEnd";
             }

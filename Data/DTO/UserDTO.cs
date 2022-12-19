@@ -20,6 +20,7 @@ namespace PBL5BE.API.Data.DTO
         public string FirstName { get; set; }
         [MaxLength(32)]
         public string LastName { get; set; }
+        public string Role { get; set; }
         public IFormFile Avatar { get; set; }
         [MaxLength(32)]
         public string PhoneNumber { get; set; }
