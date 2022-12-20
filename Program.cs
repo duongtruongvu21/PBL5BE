@@ -12,6 +12,10 @@ using PBL5BE.API.Services._Order;
 using PBL5BE.API.Services._OrderDetail;
 using PBL5BE.API.Services._Cart;
 using Microsoft.OpenApi.Models;
+using Serilog;
+using Serilog.Exceptions;
+using Serilog.Sinks.Elasticsearch;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -26,6 +30,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.WebHost.UseSentry();
+ConfigureLogging();
+builder.Host.UseSerilog();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "_myCORS",
@@ -121,3 +127,33 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void ConfigureLogging()
+{
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var configuration = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddJsonFile(
+            $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json",
+            optional: true)
+        .Build();
+
+    Log.Logger = new LoggerConfiguration()
+        .Enrich.FromLogContext()
+        .Enrich.WithExceptionDetails()
+        .WriteTo.Debug()
+        .WriteTo.Console()
+        .WriteTo.Elasticsearch(ConfigureElasticSink(configuration, environment))
+        .Enrich.WithProperty("Environment", environment)
+        .ReadFrom.Configuration(configuration)
+        .CreateLogger();
+}
+
+ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)
+{
+    return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
+    {
+        AutoRegisterTemplate = true,
+        IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{environment?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
+    };
+}
