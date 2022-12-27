@@ -30,8 +30,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.WebHost.UseSentry();
-ConfigureLogging();
-builder.Host.UseSerilog();
+// ConfigureLogging();
+// builder.Host.UseSerilog();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "_myCORS",

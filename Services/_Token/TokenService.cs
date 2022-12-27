@@ -2,16 +2,19 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using PBL5BE.API.Data;
 
 namespace PBL5BE.API.Services._Token
 {
     public class TokenService : ITokenService
     {
         private readonly IConfiguration _configuration;
+        private readonly DataContext _context;
 
-        public TokenService(IConfiguration configuration)
+        public TokenService(IConfiguration configuration, DataContext context)
         {
             _configuration = configuration;
+            _context = context;
         }
 
 
@@ -40,6 +43,21 @@ namespace PBL5BE.API.Services._Token
             var token = tokenHandler.CreateToken(tokenDesciptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public int getUserIDFromToken(string token)
+        {
+            token = token.Substring(7);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jsonToken = tokenHandler.ReadToken(token);
+            var tokenS = jsonToken as JwtSecurityToken;
+            var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
+            return(int.Parse(userId));
+        }
+
+        public bool isAdmin(int userID)
+        {
+            return _context.UserInfos.Any(u => u.UserID == userID && u.Role.Equals("R1"));
         }
     }
 }
