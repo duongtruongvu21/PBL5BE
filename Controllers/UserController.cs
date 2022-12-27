@@ -80,23 +80,30 @@ namespace PBL5BE.API.Controllers
         [HttpPost("UserLogin")]
         public IActionResult UserLogin([FromBody] UserLogin userLogin)
         {
-            var isSuccess = _userService.LoginUser(userLogin);
-            User user = null;
-            UserInfo userinfo = null;
-
             var returnData = new ReturnData();
+
+            var isSuccess = _userService.LoginUser(userLogin);
             if (isSuccess == STTCode.Success)
             {
-                returnData.isSuccess = true;
-                user = _userService.GetUserByEmail(userLogin.Email);
-                userinfo = _userInfoService.GetUserInfoByID(user.ID);
-                var token = _tokenService.CreateToken(user.ID, user.Email);
+                User user = _userService.GetUserByEmail(userLogin.Email);
+                UserInfoDTO userinfo = _userInfoService.GetUserInfoByID(user.ID);
 
-                returnData.Data = new List<object>() {
+                if (userinfo.Status == 0)
+                {
+                    returnData.isSuccess = false;
+                    returnData.errMessage = "Tài khoản này đang bị chặn!!";
+                }
+                else
+                {
+                    returnData.isSuccess = true;
+                    var token = _tokenService.CreateToken(user.ID, user.Email);
+
+                    returnData.Data = new List<object>() {
                     token,
                     userinfo,
                     _userService.GetAccountVerificationCode(user.ID),
                 };
+                }
             }
             else
             {
@@ -121,7 +128,7 @@ namespace PBL5BE.API.Controllers
 
         [HttpPut("ChangePassword")]
         [Authorize] // có token mới gọi được api này
-        public IActionResult ChangePassword(string oldPass, string newPass)
+        public IActionResult ChangePassword(UserChangePassword ucp)
         {
             string token = Request.Headers["Authorization"];
             // token nhận về có dạng "bearer " + token -> xoá 7 kí tự đầu
@@ -135,15 +142,20 @@ namespace PBL5BE.API.Controllers
                 var userid = tokenS.Claims.First(claim => claim.Type == "userid").Value;
                 var email = tokenS.Claims.First(claim => claim.Type == "email").Value;
 
-                STTCode code = _userService.ChangePassword(email, oldPass, newPass);
+                STTCode code = _userService.ChangePassword(email, ucp.OldPassword, ucp.NewPassword);
 
-                var returnData = new ReturnData()
+                var returnData = new ReturnData();
+
+                if (code == STTCode.Success)
                 {
-                    isSuccess = true,
-                    Data = new List<object>(){
-                        code
-                    }
-                };
+                    returnData.isSuccess = true;
+                }
+                else
+                {
+                    returnData.isSuccess = false;
+                    returnData.errMessage = StatusCodeService.toString(code);
+                }
+
                 return Ok(JsonConvert.SerializeObject(returnData));
             }
             catch (Exception)

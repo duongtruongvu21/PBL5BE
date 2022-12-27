@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using PBL5BE.API.Data;
@@ -19,6 +20,15 @@ namespace PBL5BE.API.Services._User
         {
             try
             {
+                try
+                {
+                    var emailAddress = new MailAddress(userLogin.Email);
+                }
+                catch
+                {
+                    return STTCode.NotEmail;
+                }
+
                 userLogin.Email = userLogin.Email.ToLower();
                 if (_context.Users.Any(u => u.Email == userLogin.Email))
                 {

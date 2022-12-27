@@ -9,22 +9,28 @@ using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._Category;
 using PBL5BE.API.Services._Order;
-
+using PBL5BE.API.Services._Token;
 namespace PBL5BE.API.Controllers
 {
     public class OrderController : BaseController
     {
         private readonly IOrderService _orderService;
+        private readonly ITokenService _tokenService;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, ITokenService tokenService)
         {
             _orderService = orderService;
+            _tokenService = tokenService;
         }
         [HttpPut("UpdateOrderStatus")]
-        //[Authorize]
+        [Authorize]
         public IActionResult UpdateOrderStatus([FromBody] OrderStatusUpdateDTO order)
         {
-            var isSuccess = _orderService.UpdateOrderStatus(order);
+            string token = Request.Headers["Authorization"];
+            var isSuccess = STTCode.Success;
+            if (_tokenService.isAdmin(_tokenService.getUserIDFromToken(token)))
+                isSuccess = _orderService.UpdateOrderStatus(order);
+            else isSuccess = STTCode.NotAdmin;
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
@@ -34,7 +40,6 @@ namespace PBL5BE.API.Controllers
                 returnData.isSuccess = false;
                 returnData.errMessage = StatusCodeService.toString(isSuccess);
             }
-
             return Ok(JsonConvert.SerializeObject(returnData));
         }
         // [HttpGet("GetOrderByID")]

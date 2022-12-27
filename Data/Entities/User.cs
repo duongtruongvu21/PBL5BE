@@ -4,8 +4,6 @@ namespace PBL5BE.API.Data.Entities
 {
     public class User
     {
-
-
         public int ID { get; set; }
         [Required]
         [EmailAddress]
