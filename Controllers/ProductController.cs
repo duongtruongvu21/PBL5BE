@@ -9,6 +9,7 @@ using PBL5BE.API.Data.Enums;
 using PBL5BE.API.Services;
 using PBL5BE.API.Services._Category;
 using PBL5BE.API.Services._Product;
+using PBL5BE.API.Services._Token;
 
 namespace PBL5BE.API.Controllers
 {
@@ -16,11 +17,13 @@ namespace PBL5BE.API.Controllers
     {
         private readonly IProductService _productService;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly ITokenService _tokenService;
 
-        public ProductController(IProductService productService, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductService productService, IWebHostEnvironment webHostEnvironment, ITokenService tokenService)
         {
             _productService = productService;
             _webHostEnvironment = webHostEnvironment;
+            _tokenService = tokenService;
         }
 
         [HttpPost("CreateProduct")]
@@ -30,12 +33,10 @@ namespace PBL5BE.API.Controllers
             var isSuccess = STTCode.ServerCodeException;
             try{
                 string token = Request.Headers["Authorization"];
-                token = token.Substring(7);
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var jsonToken = tokenHandler.ReadToken(token);
-                var tokenS = jsonToken as JwtSecurityToken;
-                var userId = tokenS.Claims.First(claim => claim.Type == "userid").Value;
-                isSuccess = await _productService.CreateProduct(newProduct, int.Parse(userId));
+                int userId = _tokenService.getUserIDFromToken(token);
+                if (_tokenService.isAdmin(_tokenService.getUserIDFromToken(token)))
+                    isSuccess = await _productService.CreateProduct(newProduct, userId);
+                else isSuccess = STTCode.NotAdmin;
             }
             catch(Exception){}
             var returnData = new ReturnData();
@@ -53,7 +54,15 @@ namespace PBL5BE.API.Controllers
         [Authorize]
         public async Task<IActionResult> UpdateProduct([FromForm] ProductUpdateDTO newProduct)
         {
-            var isSuccess = await _productService.UpdateProduct(newProduct);
+            var isSuccess = STTCode.ServerCodeException;
+            try{
+                string token = Request.Headers["Authorization"];
+                int userId = _tokenService.getUserIDFromToken(token);
+                if (_tokenService.isAdmin(_tokenService.getUserIDFromToken(token)))
+                    isSuccess = await _productService.UpdateProduct(newProduct);
+                else isSuccess = STTCode.NotAdmin;
+            }
+            catch(Exception){}
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
@@ -70,7 +79,15 @@ namespace PBL5BE.API.Controllers
         [Authorize]
         public IActionResult DeleteProduct(int id)
         {
-            var isSuccess = _productService.DeleteProduct(id);
+            var isSuccess = STTCode.ServerCodeException;
+            try{
+                string token = Request.Headers["Authorization"];
+                int userId = _tokenService.getUserIDFromToken(token);
+                if (_tokenService.isAdmin(_tokenService.getUserIDFromToken(token)))
+                    isSuccess = isSuccess = _productService.DeleteProduct(id);
+                else isSuccess = STTCode.NotAdmin;
+            }
+            catch(Exception){}
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
