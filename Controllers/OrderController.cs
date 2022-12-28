@@ -26,11 +26,8 @@ namespace PBL5BE.API.Controllers
         [Authorize]
         public IActionResult UpdateOrderStatus([FromBody] OrderStatusUpdateDTO order)
         {
-            string token = Request.Headers["Authorization"];
             var isSuccess = STTCode.Success;
-            if (_tokenService.isAdmin(_tokenService.getUserIDFromToken(token)))
-                isSuccess = _orderService.UpdateOrderStatus(order);
-            else isSuccess = STTCode.NotAdmin;
+            isSuccess = _orderService.UpdateOrderStatus(order);
             var returnData = new ReturnData();
             if(isSuccess == STTCode.Success) 
             {
